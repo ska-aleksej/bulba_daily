@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulba Daily</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">Bulba Daily</h1>
+                <div class="timer-container">
+                    <div class="timer" id="countdown-timer">
+                        <span id="days">0</span>д
+                        <span id="hours">0</span>ч
+                        <span id="minutes">0</span>м
+                        <span id="seconds">0</span>с
+                    </div>
+                    <div class="timer-label">До вечера пятницы</div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="quote-section">
+                <div class="quote-container">
+                    <h2 class="section-title">Цитата дня</h2>
+                    <blockquote class="quote" id="daily-quote">
+                        "Загрузка цитаты..."
+                    </blockquote>
+                    <cite class="quote-author" id="quote-author"></cite>
+                </div>
+            </section>
+            
+                   <section class="holidays-section">
+                       <div class="holidays-container">
+                           <h2 class="section-title">Праздники сегодня</h2>
+                           <ul class="holidays-list" id="holidays-list">
+                               <!-- Праздники будут загружены динамически -->
+                           </ul>
+                       </div>
+                   </section>
+
+                   <section class="names-section">
+                       <div class="names-container">
+                           <h2 class="section-title">Именины отмечают</h2>
+                           <div class="names-list" id="names-list">
+                               <!-- Имена будут загружены динамически -->
+                           </div>
+                       </div>
+                   </section>
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2024 Bulba Daily</p>
+        </footer>
+    </div>
+    
+    <!-- Подключаем скрипт из папки data -->
+    <script src="data/data.js"></script>
+    <!-- Подключаем основной скрипт приложения -->
+    <script src="scripts/app.js"></script>
+</body>
+</html>
