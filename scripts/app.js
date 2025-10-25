@@ -1,4 +1,3 @@
-// Функция для расчета времени до пятницы вечером (18:00)
 function calculateTimeToFriday() {
     const now = new Date();
     const currentDay = now.getDay(); // 0 = воскресенье, 1 = понедельник, ..., 5 = пятница
@@ -44,7 +43,6 @@ function calculateTimeToFriday() {
     return { days, hours, minutes, seconds };
 }
 
-// Обновление таймера
 function updateTimer() {
     const timeLeft = calculateTimeToFriday();
     const timerContainer = document.querySelector('.timer-container');
@@ -70,8 +68,6 @@ function updateTimer() {
     document.getElementById('seconds').textContent = timeLeft.seconds;
 }
 
-// Используем данные из data.js
-// Функция для получения случайной цитаты (использует данные из data.js)
 function getRandomQuoteFromData() {
     if (typeof getRandomQuote !== 'undefined') {
         return getRandomQuote();
@@ -83,14 +79,12 @@ function getRandomQuoteFromData() {
     };
 }
 
-// Функция для отображения цитаты дня
 function displayDailyQuote() {
     const quote = getRandomQuoteFromData();
     document.getElementById('daily-quote').textContent = quote.text;
     document.getElementById('quote-author').textContent = `— ${quote.author}`;
 }
 
-// Функция для загрузки данных с внешнего сайта (праздники и имена одновременно)
 async function loadDataFromAPI() {
     try {
         const url = encodeURIComponent("https://my-calend.ru/holidays");
@@ -130,12 +124,10 @@ async function loadDataFromAPI() {
     }
 }
 
-// Функция для отображения именин
 function displayNames(names) {
     const namesList = document.getElementById('names-list');
 
     if (names && names.length > 0) {
-        // Используем переданные имена
         namesList.innerHTML = '';
         names.forEach(name => {
             const div = document.createElement('div');
@@ -144,17 +136,14 @@ function displayNames(names) {
             namesList.appendChild(div);
         });
     } else {
-        // Если имена не найдены
         namesList.innerHTML = '<div class="name-item">Имена не найдены</div>';
     }
 }
 
-// Функция для отображения праздников
 function displayHolidays(holidays) {
     const holidaysList = document.getElementById('holidays-list');
     
     if (holidays && holidays.length > 0) {
-        // Используем переданные праздники
         holidaysList.innerHTML = '';
         holidays.forEach(holiday => {
             const li = document.createElement('li');
@@ -163,18 +152,14 @@ function displayHolidays(holidays) {
             holidaysList.appendChild(li);
         });
     } else {
-        // Если праздники не найдены
         holidaysList.innerHTML = '<li class="holiday-item">Праздники не найдены</li>';
     }
 }
 
-// Инициализация приложения
 async function initApp() {
-    // Обновляем таймер каждую секунду
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // Отображаем цитату дня
     displayDailyQuote();
 
     // Показываем индикаторы загрузки
@@ -182,15 +167,12 @@ async function initApp() {
     document.getElementById('names-list').innerHTML = '<div class="name-item loading">Загрузка именин...</div>';
 
     try {
-        // Загружаем данные один раз
         const data = await loadDataFromAPI();
         
         if (data) {
-            // Отображаем праздники и имена
             displayHolidays(data.holidays);
             displayNames(data.names);
         } else {
-            // В случае ошибки показываем сообщения
             document.getElementById('holidays-list').innerHTML = '<li class="holiday-item">Ошибка загрузки праздников</li>';
             document.getElementById('names-list').innerHTML = '<div class="name-item">Ошибка загрузки именин</div>';
         }

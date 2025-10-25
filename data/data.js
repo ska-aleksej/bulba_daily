@@ -1,6 +1,3 @@
-// Данные для приложения Bulba Daily
-
-// Расширенная коллекция цитат
 const dailyQuotes = [
     {
         text: "Жизнь — это то, что происходит с тобой, пока ты строишь планы.",
@@ -36,8 +33,6 @@ const dailyQuotes = [
     }
 ];
 
-
-// Функция для получения случайной цитаты
 function getRandomQuote() {
     const randomIndex = Math.floor(Math.random() * dailyQuotes.length);
     return dailyQuotes[randomIndex];
