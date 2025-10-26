@@ -36,6 +36,9 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-image: url('../images/background.png');
+    background-repeat: repeat;
+    background-size: 180px;
 }
 
 .header {
