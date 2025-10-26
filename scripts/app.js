@@ -43,29 +43,52 @@ function calculateTimeToFriday() {
     return { days, hours, minutes, seconds };
 }
 
+function padZero(num) {
+    return num.toString().padStart(2, '0');
+}
+
 function updateTimer() {
     const timeLeft = calculateTimeToFriday();
     const timerContainer = document.querySelector('.timer-container');
     const timerElement = document.getElementById('countdown-timer');
     
-    // Если пятница уже прошла (после 18:00)
+    // Если уже выходной
     if (timeLeft.isWeekend) {
         timerElement.innerHTML = '<span style="font-size: 1.1rem;">🎉 Выходные!</span>';
-        timerElement.style.fontWeight = '600';
-        timerElement.style.color = 'white';
         timerContainer.classList.add('weekend-mode');
         return;
     }
     
     // Обычный режим таймера
     timerContainer.classList.remove('weekend-mode');
-    timerElement.style.fontWeight = '700';
-    timerElement.style.color = 'white';
     
-    document.getElementById('days').textContent = timeLeft.days;
-    document.getElementById('hours').textContent = timeLeft.hours;
-    document.getElementById('minutes').textContent = timeLeft.minutes;
-    document.getElementById('seconds').textContent = timeLeft.seconds;
+    document.getElementById('days').textContent = padZero(timeLeft.days);
+    document.getElementById('hours').textContent = padZero(timeLeft.hours);
+    document.getElementById('minutes').textContent = padZero(timeLeft.minutes);
+    document.getElementById('seconds').textContent = padZero(timeLeft.seconds);
+
+    // Обновляем подписи с правильным склонением
+    document.querySelector('#days').nextElementSibling.textContent =
+        pluralize(timeLeft.days, 'день', 'дня', 'дней');
+    document.querySelector('#hours').nextElementSibling.textContent =
+        pluralize(timeLeft.hours, 'час', 'часа', 'часов');
+    document.querySelector('#minutes').nextElementSibling.textContent =
+        pluralize(timeLeft.minutes, 'минута', 'минуты', 'минут');
+    document.querySelector('#seconds').nextElementSibling.textContent =
+        pluralize(timeLeft.seconds, 'секунда', 'секунды', 'секунд');
+}
+
+function pluralize(number, one, few, many) {
+    const mod10 = number % 10;
+    const mod100 = number % 100;
+
+    if (mod10 === 1 && mod100 !== 11) {
+        return one;
+    } else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {
+        return few;
+    } else {
+        return many;
+    }
 }
 
 function getRandomQuoteFromData() {
