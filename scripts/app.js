@@ -204,6 +204,13 @@ async function initApp() {
         document.getElementById('holidays-list').innerHTML = '<li class="holiday-item">Ошибка загрузки праздников</li>';
         document.getElementById('names-list').innerHTML = '<div class="name-item">Ошибка загрузки именин</div>';
     }
+
+    const potatoImage = document.querySelector('.potato-image');
+    if (potatoImage) {
+        potatoImage.addEventListener('click', function(e) {
+            displayDailyQuote();
+        });
+    }
 }
 
 // Запускаем приложение когда DOM загружен
