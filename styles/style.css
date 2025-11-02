@@ -186,6 +186,10 @@ body {
     flex-shrink: 0;
     transition: transform 0.25s ease;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 .potato-image:hover {

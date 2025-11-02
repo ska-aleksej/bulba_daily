@@ -116,8 +116,9 @@ async function loadDataFromAPI() {
         const response = await fetch(proxy);
         const data = await response.json();
 
-        if (!data.contents) {
-            throw new Error('Не удалось получить данные');
+        if (!data || !data.contents) {
+            console.error('Не удалось получить данные');
+            return null;
         }
 
         const html = data.contents;
@@ -210,7 +211,7 @@ async function initApp() {
 
     const potatoImage = document.querySelector('.potato-image');
     if (potatoImage) {
-        potatoImage.addEventListener('click', function(e) {
+        potatoImage.addEventListener('click', () => {
             displayDailyQuote();
         });
     }
