@@ -394,10 +394,10 @@ function getRandomQuote() {
     return dailyQuotes[randomIndex];
 }
 
-// Экспорт данных для использования в app.js
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        dailyQuotes,
-        getRandomQuote
-    };
+const vipNames = [
+    "Алексей", "Станислав", "Евгений", "Юрий", "Игорь", "Олег", "Леонид", "Артем"
+];
+
+function isVipName(text) {
+    return vipNames.includes(text);
 }

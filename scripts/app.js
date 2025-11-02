@@ -155,6 +155,9 @@ function displayNames(names) {
         names.forEach(name => {
             const div = document.createElement('div');
             div.className = 'name-item';
+            if (isVipName(name)) {
+                div.classList.add('vip-name');
+            }
             div.textContent = name;
             namesList.appendChild(div);
         });
