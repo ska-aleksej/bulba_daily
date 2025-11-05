@@ -183,6 +183,69 @@ function displayHolidays(holidays) {
     }
 }
 
+async function loadWeatherForCities() {
+    const cities = getWeatherCities();
+    const weatherContainer = document.querySelector('.weather-list');
+
+    // Показываем индикатор загрузки
+    weatherContainer.innerHTML = '<div class="loading">Загрузка погоды...</div>';
+
+    const weatherPromises = cities.map(city =>
+        fetchWeather(city.displayName, city.lat, city.lon)
+    );
+
+    const weatherResults = await Promise.all(weatherPromises);
+
+    weatherContainer.innerHTML = '';
+
+    cities.forEach((city, index) => {
+        const weatherData = weatherResults[index];
+        if (weatherData) {
+            displayWeatherCard(city, weatherData);
+        }
+    });
+}
+
+async function fetchWeather(cityName, latitude, longitude) {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,weather_code,wind_speed_10m&timezone=auto`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Ошибка загрузки погоды для ${cityName}:`, error);
+        return null;
+    }
+}
+
+function displayWeatherCard(city, weatherData) {
+    const card = document.createElement('div');
+    card.className = 'weather-card';
+
+    const temp = Math.round(weatherData.current.temperature_2m);
+    const weatherCode = weatherData.current.weather_code;
+    const weatherEmoji = getWeatherEmoji(weatherCode);
+
+    card.innerHTML = `
+        <div class="city-header">
+<!--            <img src="${city.icon}" alt="${city.displayName}" class="city-icon">-->
+            <h3>${city.displayName}</h3>
+        </div>
+        <div class="weather-block">
+            <div class="weather-emoji">${weatherEmoji}</div>
+            <div class="temperature">${temp}°C</div>
+        </div>
+        <div class="feels-like">Ощущается: ${Math.round(weatherData.current.apparent_temperature)}°C</div>
+        <div class="weather-details">
+            <span>💨 ${Math.round(weatherData.current.wind_speed_10m)} км/ч</span>
+            <span>💧 ${weatherData.current.relative_humidity_2m}%</span>
+        </div>
+    `;
+
+    document.querySelector('.weather-list').appendChild(card);
+}
+
 async function initApp() {
     updateTimer();
     setInterval(updateTimer, 1000);
@@ -208,6 +271,8 @@ async function initApp() {
         document.getElementById('holidays-list').innerHTML = '<li class="holiday-item">Ошибка загрузки праздников</li>';
         document.getElementById('names-list').innerHTML = '<div class="name-item">Ошибка загрузки именин</div>';
     }
+
+    loadWeatherForCities();
 
     const potatoImage = document.querySelector('.potato-image');
     if (potatoImage) {

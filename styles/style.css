@@ -163,15 +163,6 @@ body {
     margin-bottom: 24px;
 }
 
-.quote-container {
-    background: var(--background-white);
-    padding: 28px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    box-shadow: none;
-    background: linear-gradient(135deg, var(--background-white) 0%, var(--light-blue) 100%);
-}
-
 .quote-speech-bubble {
     display: flex;
     align-items: flex-start;
@@ -271,10 +262,9 @@ body {
     font-style: normal;
 }
 
-.holidays-section {
-   margin-bottom: 24px;
-}
-
+.quote-container,
+.weather-container,
+.names-container,
 .holidays-container {
     background: var(--background-white);
     padding: 28px;
@@ -284,17 +274,10 @@ body {
     background: linear-gradient(135deg, var(--background-white) 0%, var(--light-blue) 100%);
 }
 
+.weather-section,
+.holidays-section,
 .names-section {
     margin-bottom: 24px;
-}
-
-.names-container {
-   background: var(--background-white);
-   padding: 28px;
-   border-radius: 6px;
-   border: 1px solid var(--border-color);
-   box-shadow: none;
-   background: linear-gradient(135deg, var(--background-white) 0%, var(--light-blue) 100%);
 }
 
 .holidays-list {
@@ -409,6 +392,94 @@ body {
     animation: spin 1s linear infinite;
 }
 
+.weather-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.weather-card {
+    background: var(--background-white);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--medium-blue);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.weather-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--bright-blue);
+}
+
+.city-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.city-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.city-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-text);
+    margin: 0;
+}
+
+.weather-block {
+    display: flex;
+    align-items: center;
+}
+
+.weather-emoji {
+    font-size: 60px;
+    margin: 8px 0;
+}
+
+.temperature {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin: 8px 0;
+}
+
+.feels-like {
+    font-size: 14px;
+    color: var(--secondary-text);
+}
+
+.weather-details {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--secondary-text);
+    margin-top: 8px;
+}
+
+.weather-details span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.weather-list .loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: var(--secondary-text);
+    font-style: italic;
+}
+
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
@@ -474,6 +545,7 @@ body {
        padding: 16px;
    }
 
+   .weather-container,
    .quote-container,
    .holidays-container,
    .names-container {
@@ -520,4 +592,30 @@ body {
        padding-left: 30px;
        font-size: 14px;
    }
+
+    .weather-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .weather-card {
+        padding: 16px;
+    }
+
+    .weather-emoji {
+        font-size: 40px;
+    }
+
+    .temperature {
+        font-size: 28px;
+    }
+
+    .city-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .city-header h3 {
+        font-size: 16px;
+    }
 }

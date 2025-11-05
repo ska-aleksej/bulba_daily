@@ -401,3 +401,74 @@ const vipNames = [
 function isVipName(text) {
     return vipNames.includes(text);
 }
+
+const weatherCities = [
+    {
+        displayName: "Познань",
+        queryName: "Poznan",
+        lat: 52.4064,
+        lon: 16.9252,
+        icon: "images/cities/poznan.png",
+        emoji: "🇵🇱"
+    },
+    {
+        displayName: "Пенза",
+        queryName: "Penza",
+        lat: 53.2001,
+        lon: 45.0000,
+        icon: "images/cities/penza.png",
+        emoji: "🇷🇺"
+    },
+    {
+        displayName: "Минск",
+        queryName: "Minsk",
+        lat: 53.9006,
+        lon: 27.5590,
+        icon: "images/cities/minsk.png",
+        emoji: "🇧🇾"
+    },
+    {
+        displayName: "Тверь",
+        queryName: "Tver",
+        lat: 56.8594,
+        lon: 35.9123,
+        icon: "images/cities/tver.png",
+        emoji: "🇷🇺"
+    }
+];
+
+function getWeatherCities() {
+    return weatherCities;
+}
+
+// Коды погоды Open-Meteo: https://open-meteo.com/en/docs
+function getWeatherEmoji(code) {
+    const weatherCodes = {
+        0: '☀️',      // Clear sky
+        1: '🌤️',     // Mainly clear
+        2: '⛅',     // Partly cloudy
+        3: '☁️',     // Overcast
+        45: '🌫️',   // Fog
+        48: '🌫️',   // Depositing rime fog
+        51: '🌦️',   // Light drizzle
+        53: '🌦️',   // Moderate drizzle
+        55: '🌧️',   // Dense drizzle
+        61: '🌧️',   // Slight rain
+        63: '🌧️',   // Moderate rain
+        65: '🌧️',   // Heavy rain
+        71: '🌨️',   // Slight snow
+        73: '🌨️',   // Moderate snow
+        75: '❄️',    // Heavy snow
+        77: '🌨️',   // Snow grains
+        80: '🌦️',   // Slight rain showers
+        81: '🌧️',   // Moderate rain showers
+        82: '⛈️',    // Violent rain showers
+        85: '🌨️',   // Slight snow showers
+        86: '❄️',    // Heavy snow showers
+        95: '⛈️',    // Thunderstorm
+        96: '⛈️',    // Thunderstorm with slight hail
+        99: '⛈️'     // Thunderstorm with heavy hail
+    };
+
+    return weatherCodes[code] || '🌡️';
+}
