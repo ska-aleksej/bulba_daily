@@ -222,24 +222,26 @@ async function fetchWeather(cityName, latitude, longitude) {
 function displayWeatherCard(city, weatherData) {
     const card = document.createElement('div');
     card.className = 'weather-card';
+    card.style.backgroundImage = `url('${city.bgImage}')`;
 
     const temp = Math.round(weatherData.current.temperature_2m);
     const weatherCode = weatherData.current.weather_code;
     const weatherEmoji = getWeatherEmoji(weatherCode);
 
     card.innerHTML = `
-        <div class="city-header">
-<!--            <img src="${city.icon}" alt="${city.displayName}" class="city-icon">-->
-            <h3>${city.displayName}</h3>
-        </div>
-        <div class="weather-block">
-            <div class="weather-emoji">${weatherEmoji}</div>
-            <div class="temperature">${temp}°C</div>
-        </div>
-        <div class="feels-like">Ощущается: ${Math.round(weatherData.current.apparent_temperature)}°C</div>
-        <div class="weather-details">
-            <span>💨 ${Math.round(weatherData.current.wind_speed_10m)} км/ч</span>
-            <span>💧 ${weatherData.current.relative_humidity_2m}%</span>
+        <div class="weather-card-content">
+            <div class="city-header">
+                <h3>${city.displayName}</h3>
+            </div>
+            <div class="weather-block">
+                <div class="weather-emoji">${weatherEmoji}</div>
+                <div class="temperature">${temp}°C</div>
+            </div>
+            <div class="feels-like">Ощущается: ${Math.round(weatherData.current.apparent_temperature)}°C</div>
+            <div class="weather-details">
+                <span>💨 ${Math.round(weatherData.current.wind_speed_10m)} км/ч</span>
+                <span>💧 ${weatherData.current.relative_humidity_2m}%</span>
+            </div>
         </div>
     `;
 
@@ -251,6 +253,8 @@ async function initApp() {
     setInterval(updateTimer, 1000);
 
     displayDailyQuote();
+
+    loadWeatherForCities();
 
     // Показываем индикаторы загрузки
     document.getElementById('holidays-list').innerHTML = '<li class="holiday-item loading">Загрузка праздников...</li>';
@@ -271,8 +275,6 @@ async function initApp() {
         document.getElementById('holidays-list').innerHTML = '<li class="holiday-item">Ошибка загрузки праздников</li>';
         document.getElementById('names-list').innerHTML = '<div class="name-item">Ошибка загрузки именин</div>';
     }
-
-    loadWeatherForCities();
 
     const potatoImage = document.querySelector('.potato-image');
     if (potatoImage) {

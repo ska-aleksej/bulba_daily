@@ -408,7 +408,7 @@ const weatherCities = [
         queryName: "Poznan",
         lat: 52.4064,
         lon: 16.9252,
-        icon: "images/cities/poznan.png",
+        bgImage: "images/cities/poznan-bg.jpg",
         emoji: "🇵🇱"
     },
     {
@@ -416,7 +416,7 @@ const weatherCities = [
         queryName: "Penza",
         lat: 53.2001,
         lon: 45.0000,
-        icon: "images/cities/penza.png",
+        bgImage: "images/cities/penza-bg.jpg",
         emoji: "🇷🇺"
     },
     {
@@ -424,7 +424,7 @@ const weatherCities = [
         queryName: "Minsk",
         lat: 53.9006,
         lon: 27.5590,
-        icon: "images/cities/minsk.png",
+        bgImage: "images/cities/minsk-bg.jpg",
         emoji: "🇧🇾"
     },
     {
@@ -432,7 +432,7 @@ const weatherCities = [
         queryName: "Tver",
         lat: 56.8594,
         lon: 35.9123,
-        icon: "images/cities/tver.png",
+        bgImage: "images/cities/tver-bg.jpg",
         emoji: "🇷🇺"
     }
 ];
