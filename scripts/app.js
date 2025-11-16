@@ -108,20 +108,39 @@ function displayDailyQuote() {
     document.getElementById('quote-author').textContent = `— ${quote.author}`;
 }
 
+async function fetchWithRetry(url, retries = 3, delay = 1000) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                return response;
+            }
+            console.warn(`Попытка ${i + 1}/${retries}: Неудачный ответ от сервера (статус: ${response.status})`);
+        } catch (error) {
+            console.warn(`Попытка ${i + 1}/${retries}: Ошибка сети.`, error.message);
+        }
+        // Ждем перед следующей попыткой
+        if (i < retries - 1) {
+            await new Promise(res => setTimeout(res, delay));
+        }
+    }
+    // Если все попытки провалились, выбрасываем ошибку
+    throw new Error(`Не удалось загрузить данные после ${retries} попыток.`);
+}
+
 async function loadDataFromAPI() {
     try {
-        const url = encodeURIComponent("https://my-calend.ru/holidays");
-        const proxy = `https://api.allorigins.win/get?url=${url}`;
+        const targetUrl = "https://my-calend.ru/holidays";
+        const proxyUrl = `https://api.codetabs.com/v1/proxy/?quest=${targetUrl}`;
 
-        const response = await fetch(proxy);
-        const data = await response.json();
+        const response = await fetchWithRetry(proxyUrl);
+        const html = await response.text();
 
-        if (!data || !data.contents) {
-            console.error('Не удалось получить данные');
+        if (!html) {
+            console.error('Не удалось получить данные: ответ от прокси пустой.');
             return null;
         }
 
-        const html = data.contents;
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
 
@@ -143,7 +162,7 @@ async function loadDataFromAPI() {
 
         return { holidays, names };
     } catch (error) {
-        console.error('Ошибка загрузки данных:', error);
+        console.error('Ошибка загрузки данных:', error.message);
         return null;
     }
 }
@@ -211,8 +230,7 @@ async function fetchWeather(cityName, latitude, longitude) {
 
     try {
         const response = await fetch(url);
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error(`Ошибка загрузки погоды для ${cityName}:`, error);
         return null;
