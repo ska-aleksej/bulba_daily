@@ -290,14 +290,13 @@ body {
 .holiday-item {
     background: var(--light-blue);
     color: var(--primary-text);
-    padding: 16px 20px;
     border-radius: 6px;
     font-size: 16px;
     font-weight: 400;
     border: 1px solid var(--medium-blue);
     transition: all 0.2s ease;
     position: relative;
-    padding-left: 40px;
+    padding: 16px 20px 16px 40px;
 }
 
 .holiday-item::before {
@@ -324,14 +323,13 @@ body {
 .name-item {
     background: var(--light-blue);
     color: var(--primary-text);
-    padding: 12px 16px;
     border-radius: 6px;
     font-size: 16px;
     font-weight: 500;
     border: 1px solid var(--medium-blue);
     transition: all 0.2s ease;
     position: relative;
-    padding-left: 36px;
+    padding: 12px 16px 12px 36px;
 }
 
 .name-item::before {
@@ -620,15 +618,21 @@ body {
    }
 
    .holiday-item {
-       padding: 12px 16px;
-       padding-left: 32px;
+       padding: 12px 16px 12px 32px;
        font-size: 14px;
    }
 
+    .holiday-item::before {
+        left: 8px;
+    }
+
    .name-item {
-       padding: 10px 14px;
-       padding-left: 30px;
+       padding: 10px 14px 10px 30px;
        font-size: 14px;
+   }
+
+   .name-item:before {
+       left: 6px;
    }
 
     .weather-list {
