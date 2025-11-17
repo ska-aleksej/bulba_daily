@@ -1,96 +1,3 @@
-function calculateTimeToFriday() {
-    const now = new Date();
-    const currentDay = now.getDay(); // 0 = воскресенье, 1 = понедельник, ..., 5 = пятница
-    const currentHour = now.getHours();
-    
-    // Проверяем, если сегодня пятница и время после 18:00
-    if (currentDay === 5 && currentHour >= 18) {
-        return { isWeekend: true };
-    }
-    
-    // Создаем дату ближайшей пятницы в 18:00
-    const friday = new Date(now);
-    
-    // Если сегодня пятница и время меньше 18:00, берем сегодняшнюю пятницу
-    if (currentDay === 5 && currentHour < 18) {
-        friday.setHours(18, 0, 0, 0);
-    } else {
-        // Иначе берем следующую пятницу
-        let daysUntilFriday;
-        if (currentDay <= 5) {
-            // Если сегодня понедельник-пятница
-            daysUntilFriday = 5 - currentDay;
-        } else {
-            // Если сегодня суббота или воскресенье
-            daysUntilFriday = 5 + (7 - currentDay);
-        }
-        
-        friday.setDate(now.getDate() + daysUntilFriday);
-        friday.setHours(18, 0, 0, 0);
-    }
-    
-    const timeDiff = friday.getTime() - now.getTime();
-    
-    if (timeDiff <= 0) {
-        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-    
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-    
-    return { days, hours, minutes, seconds };
-}
-
-function padZero(num) {
-    return num.toString().padStart(2, '0');
-}
-
-function updateTimer() {
-    const timeLeft = calculateTimeToFriday();
-    const timerContainer = document.querySelector('.timer-container');
-    const timerElement = document.getElementById('countdown-timer');
-    
-    // Если уже выходной
-    if (timeLeft.isWeekend) {
-        timerElement.innerHTML = '<span style="font-size: 1.1rem;">🎉 Выходные!</span>';
-        timerContainer.classList.add('weekend-mode');
-        return;
-    }
-    
-    // Обычный режим таймера
-    timerContainer.classList.remove('weekend-mode');
-    
-    document.getElementById('days').textContent = padZero(timeLeft.days);
-    document.getElementById('hours').textContent = padZero(timeLeft.hours);
-    document.getElementById('minutes').textContent = padZero(timeLeft.minutes);
-    document.getElementById('seconds').textContent = padZero(timeLeft.seconds);
-
-    // Обновляем подписи с правильным склонением
-    document.querySelector('#days').nextElementSibling.textContent =
-        pluralize(timeLeft.days, 'день', 'дня', 'дней');
-    document.querySelector('#hours').nextElementSibling.textContent =
-        pluralize(timeLeft.hours, 'час', 'часа', 'часов');
-    document.querySelector('#minutes').nextElementSibling.textContent =
-        pluralize(timeLeft.minutes, 'минута', 'минуты', 'минут');
-    document.querySelector('#seconds').nextElementSibling.textContent =
-        pluralize(timeLeft.seconds, 'секунда', 'секунды', 'секунд');
-}
-
-function pluralize(number, one, few, many) {
-    const mod10 = number % 10;
-    const mod100 = number % 100;
-
-    if (mod10 === 1 && mod100 !== 11) {
-        return one;
-    } else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {
-        return few;
-    } else {
-        return many;
-    }
-}
-
 function getRandomQuoteFromData() {
     if (typeof getRandomQuote !== 'undefined') {
         return getRandomQuote();
@@ -266,9 +173,131 @@ function displayWeatherCard(city, weatherData) {
     document.querySelector('.weather-list').appendChild(card);
 }
 
+function padZero(num) {
+    return num.toString().padStart(2, '0');
+}
+
+function pluralize(number, one, few, many) {
+    const mod10 = number % 10;
+    const mod100 = number % 100;
+
+    if (mod10 === 1 && mod100 !== 11) {
+        return one;
+    } else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {
+        return few;
+    } else {
+        return many;
+    }
+}
+
+function updateTimer(timerId, timeLeft) {
+    const timerContainer = document.querySelector(`[data-timer-id="${timerId}"]`);
+    if (!timerContainer) return;
+
+    // Проверка на специальные состояния (выходные и т.д.)
+    if (timeLeft.isWeekend || timeLeft.isExpired) {
+        handleSpecialState(timerContainer, timeLeft);
+        return;
+    }
+
+    // Обновляем значения
+    timerContainer.querySelector('[data-unit="days"]').textContent = padZero(timeLeft.days);
+    timerContainer.querySelector('[data-unit="hours"]').textContent = padZero(timeLeft.hours);
+    timerContainer.querySelector('[data-unit="minutes"]').textContent = padZero(timeLeft.minutes);
+    timerContainer.querySelector('[data-unit="seconds"]').textContent = padZero(timeLeft.seconds);
+
+    // Обновляем склонения
+    const labels = timerContainer.querySelectorAll('.timer-unit-label');
+    labels[0].textContent = pluralize(timeLeft.days, 'день', 'дня', 'дней');
+    labels[1].textContent = pluralize(timeLeft.hours, 'час', 'часа', 'часов');
+    labels[2].textContent = pluralize(timeLeft.minutes, 'минута', 'минуты', 'минут');
+    labels[3].textContent = pluralize(timeLeft.seconds, 'секунда', 'секунды', 'секунд');
+}
+
+function handleSpecialState(timerContainer, timeLeft) {
+    const timerElement = timerContainer.querySelector('.timer');
+
+    if (timeLeft.isWeekend) {
+        timerElement.innerHTML = '<span style="font-size: 1.1rem;">🎉 Выходные!</span>';
+        timerContainer.classList.add('weekend-mode');
+    } else if (timeLeft.isExpired) {
+        timerElement.innerHTML = '<span style="font-size: 1.1rem;">🎊 С Новым Годом!</span>';
+        timerContainer.classList.add('expired-mode');
+    }
+}
+
+function calculateTimeToFriday() {
+    const now = new Date();
+    const currentDay = now.getDay(); // 0 = воскресенье, 1 = понедельник, ..., 5 = пятница
+    const currentHour = now.getHours();
+
+    // Проверяем, если сегодня пятница и время после 18:00
+    if (currentDay === 5 && currentHour >= 18) {
+        return { isWeekend: true };
+    }
+
+    // Создаем дату ближайшей пятницы в 18:00
+    const friday = new Date(now);
+
+    // Если сегодня пятница и время меньше 18:00, берем сегодняшнюю пятницу
+    if (currentDay === 5 && currentHour < 18) {
+        friday.setHours(18, 0, 0, 0);
+    } else {
+        // Иначе берем следующую пятницу
+        let daysUntilFriday;
+        if (currentDay <= 5) {
+            // Если сегодня понедельник-пятница
+            daysUntilFriday = 5 - currentDay;
+        } else {
+            // Если сегодня суббота или воскресенье
+            daysUntilFriday = 5 + (7 - currentDay);
+        }
+
+        friday.setDate(now.getDate() + daysUntilFriday);
+        friday.setHours(18, 0, 0, 0);
+    }
+
+    const timeDiff = friday.getTime() - now.getTime();
+
+    if (timeDiff <= 0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+}
+
+function calculateTimeToNewYear() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const newYear = new Date(currentYear + 1, 0, 1, 0, 0, 0);
+
+    const timeDiff = newYear.getTime() - now.getTime();
+
+    if (timeDiff <= 0) {
+        return { isExpired: true };
+    }
+
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+}
+
+function updateAllTimers() {
+    updateTimer('friday', calculateTimeToFriday());
+    updateTimer('new-year', calculateTimeToNewYear());
+}
+
 async function initApp() {
-    updateTimer();
-    setInterval(updateTimer, 1000);
+    updateAllTimers();
+    setInterval(updateAllTimers, 1000);
 
     displayDailyQuote();
 
