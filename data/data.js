@@ -408,32 +408,28 @@ const weatherCities = [
         queryName: "Poznan",
         lat: 52.4064,
         lon: 16.9252,
-        bgImage: "images/cities/poznan-bg.jpg",
-        emoji: "🇵🇱"
+        bgImage: "images/cities/poznan-bg.jpg"
     },
     {
         displayName: "Пенза",
         queryName: "Penza",
         lat: 53.2001,
         lon: 45.0000,
-        bgImage: "images/cities/penza-bg.jpg",
-        emoji: "🇷🇺"
+        bgImage: "images/cities/penza-bg.jpg"
     },
     {
         displayName: "Минск",
         queryName: "Minsk",
         lat: 53.9006,
         lon: 27.5590,
-        bgImage: "images/cities/minsk-bg.jpg",
-        emoji: "🇧🇾"
+        bgImage: "images/cities/minsk-bg.jpg"
     },
     {
-        displayName: "Тверь",
-        queryName: "Tver",
-        lat: 56.8594,
-        lon: 35.9123,
-        bgImage: "images/cities/tver-bg.jpg",
-        emoji: "🇷🇺"
+        displayName: "Могилев",
+        queryName: "Mogilev",
+        lat: 53.8973,
+        lon: 30.3381,
+        bgImage: "images/cities/mogilev-bg.jpg"
     }
 ];
 
