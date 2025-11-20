@@ -93,15 +93,28 @@ function displayNames(names) {
     }
 }
 
+function getExtraHolidays() {
+    const today = new Date();
+    if (today.getDay() === 5) {
+        return [{ name: "Пятница! Заряжаем батарейки на выходные!", isExtra: true }];
+    }
+    return [];
+}
+
 function displayHolidays(holidays) {
     const holidaysList = document.getElementById('holidays-list');
-    
-    if (holidays && holidays.length > 0) {
+    const extraHolidays = getExtraHolidays();
+    const allHolidays = [...extraHolidays, ...holidays.map(h => ({ name: h, isExtra: false }))];
+
+    if (allHolidays && allHolidays.length > 0) {
         holidaysList.innerHTML = '';
-        holidays.forEach(holiday => {
+        allHolidays.forEach(holiday => {
             const li = document.createElement('li');
             li.className = 'holiday-item';
-            li.textContent = holiday;
+            if (holiday.isExtra) {
+                li.classList.add('extra-holiday-item');
+            }
+            li.textContent = holiday.name;
             holidaysList.appendChild(li);
         });
     } else {
