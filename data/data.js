@@ -468,3 +468,5 @@ function getWeatherEmoji(code) {
 
     return weatherCodes[code] || '🌡️';
 }
+
+export { getRandomQuote, isVipName, getWeatherCities, getWeatherEmoji };

@@ -1,12 +1,7 @@
+import { getRandomQuote, isVipName, getWeatherCities, getWeatherEmoji } from '../data/data.js';
+
 function getRandomQuoteFromData() {
-    if (typeof getRandomQuote !== 'undefined') {
-        return getRandomQuote();
-    }
-    // Fallback если data.js не загружен
-    return {
-        text: "Жизнь — это то, что происходит с тобой, пока ты строишь планы.",
-        author: "Джон Леннон"
-    };
+    return getRandomQuote();
 }
 
 function displayDailyQuote() {
@@ -344,5 +339,4 @@ async function initApp() {
     }
 }
 
-// Запускаем приложение когда DOM загружен
 document.addEventListener('DOMContentLoaded', initApp);
