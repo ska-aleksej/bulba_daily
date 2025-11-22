@@ -1,4 +1,20 @@
 import { getRandomQuote, isVipName, getWeatherCities, getWeatherEmoji } from '../data/data.js';
+import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
+
+function updateTeamName() {
+    const teamName = getSetting(SETTING_TEAM_NAME, 'Bulba Daily');
+    document.title = teamName;
+
+    const headerTitle = document.querySelector('.title');
+    if (headerTitle) {
+        headerTitle.textContent = teamName;
+    }
+
+    const footerText = document.querySelector('.footer p');
+    if (footerText) {
+        footerText.textContent = `© 2025 ${teamName}`;
+    }
+}
 
 function getRandomQuoteFromData() {
     return getRandomQuote();
@@ -304,6 +320,9 @@ function updateAllTimers() {
 }
 
 async function initApp() {
+    updateTeamName();
+    subscribe(SETTING_TEAM_NAME, updateTeamName);
+
     updateAllTimers();
     setInterval(updateAllTimers, 1000);
 
