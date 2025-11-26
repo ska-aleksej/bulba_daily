@@ -1,5 +1,5 @@
 import { getRandomQuote, isVipName, getWeatherCities, getWeatherEmoji } from '../data/data.js';
-import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
+import { getSetting, subscribe, SETTING_TEAM_NAME, SETTING_STATHAM_MODE, toggleStathamMode } from './settings/settings.js';
 
 function updateTeamName() {
     const teamName = getSetting(SETTING_TEAM_NAME, 'Bulba Daily');
@@ -16,12 +16,23 @@ function updateTeamName() {
     }
 }
 
-function getRandomQuoteFromData() {
-    return getRandomQuote();
+function getRandomQuoteFromData(isStathamMode = false) {
+    return getRandomQuote(isStathamMode);
 }
 
 function displayDailyQuote() {
-    const quote = getRandomQuoteFromData();
+    const isStathamMode = getSetting(SETTING_STATHAM_MODE, false);
+    const quoteContainer = document.querySelector('.quote-container');
+    const quoteTitle = quoteContainer.querySelector('.section-title');
+
+    if (quoteContainer) {
+        quoteContainer.classList.toggle('statham-mode', isStathamMode);
+    }
+    if (quoteTitle) {
+        quoteTitle.textContent = isStathamMode ? 'Пацанская мудрость' : 'Цитата дня';
+    }
+
+    const quote = getRandomQuoteFromData(isStathamMode);
     document.getElementById('daily-quote').textContent = quote.text;
     document.getElementById('quote-author').textContent = `— ${quote.author}`;
 }
@@ -327,6 +338,7 @@ async function initApp() {
     setInterval(updateAllTimers, 1000);
 
     displayDailyQuote();
+    subscribe(SETTING_STATHAM_MODE, displayDailyQuote);
 
     loadWeatherForCities();
 
@@ -350,10 +362,14 @@ async function initApp() {
         document.getElementById('names-list').innerHTML = '<div class="name-item">Ошибка загрузки именин</div>';
     }
 
-    const potatoImage = document.querySelector('.potato-image');
-    if (potatoImage) {
-        potatoImage.addEventListener('click', () => {
-            displayDailyQuote();
+    const heroImage = document.querySelector('.hero-image');
+    if (heroImage) {
+        heroImage.addEventListener('click', (event) => {
+            if (event.ctrlKey || event.metaKey) {
+                toggleStathamMode();
+            } else {
+                displayDailyQuote();
+            }
         });
     }
 }

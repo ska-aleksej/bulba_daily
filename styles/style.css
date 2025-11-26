@@ -204,10 +204,13 @@ body {
     position: relative;
 }
 
-.potato-image {
+.hero-image {
     width: 120px;
     height: 120px;
-    object-fit: contain;
+    background-image: url('../images/potato.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     flex-shrink: 0;
     transition: transform 0.25s ease;
     cursor: pointer;
@@ -217,7 +220,11 @@ body {
     -webkit-touch-callout: none;
 }
 
-.potato-image:hover {
+.statham-mode .hero-image {
+    background-image: url('../images/statham.png');
+}
+
+.hero-image:hover {
     transform: scale(1.06);
 }
 
@@ -296,6 +303,10 @@ body {
     font-style: normal;
 }
 
+.statham-mode .quote-author {
+    display: none;
+}
+
 .quote-container,
 .weather-container,
 .names-container,
@@ -306,6 +317,40 @@ body {
     border: 1px solid var(--border-color);
     box-shadow: none;
     background: linear-gradient(135deg, var(--background-white) 0%, var(--light-blue) 100%);
+}
+
+.quote-container.statham-mode {
+    background: linear-gradient(145deg, #424242, #212121);
+    border: 2px solid #555;
+    color: #f5f5f5;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.quote-container.statham-mode .section-title {
+    color: #fff;
+}
+
+.quote-container.statham-mode .speech-bubble {
+    background: #2a2a2a;
+    border: 2px solid #777;
+}
+
+.quote-container.statham-mode .speech-bubble::before {
+    border-right-color: #777;
+}
+
+.quote-container.statham-mode .speech-bubble::after {
+    border-right-color: #2a2a2a;
+}
+
+.quote-container.statham-mode .quote {
+    color: #f0f0f0;
+    font-weight: 600;
+}
+
+.quote-container.statham-mode .quote::before,
+.quote-container.statham-mode .quote::after {
+    color: var(--warning-orange);
 }
 
 .weather-section,
@@ -654,7 +699,7 @@ body {
        gap: 15px;
    }
 
-   .potato-image {
+   .hero-image {
        width: 80px;
        height: 80px;
    }
