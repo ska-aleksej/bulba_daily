@@ -320,10 +320,10 @@ body {
 }
 
 .quote-container.statham-mode {
-    background: linear-gradient(145deg, #424242, #212121);
-    border: 2px solid #555;
+    background: linear-gradient(145deg, #1D3A5F, var(--primary-text));
+    border: 2px solid #3A5E8A;
     color: #f5f5f5;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .quote-container.statham-mode .section-title {
@@ -331,16 +331,16 @@ body {
 }
 
 .quote-container.statham-mode .speech-bubble {
-    background: #2a2a2a;
-    border: 2px solid #777;
+    background: #2C4A70;
+    border: 2px solid var(--medium-blue);
 }
 
 .quote-container.statham-mode .speech-bubble::before {
-    border-right-color: #777;
+    border-right-color: var(--medium-blue);
 }
 
 .quote-container.statham-mode .speech-bubble::after {
-    border-right-color: #2a2a2a;
+    border-right-color: #2C4A70;
 }
 
 .quote-container.statham-mode .quote {
