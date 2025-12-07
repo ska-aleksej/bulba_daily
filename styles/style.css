@@ -224,6 +224,14 @@ body {
     background-image: url('../images/statham.png');
 }
 
+.new-year-theme .hero-image {
+    background-image: url('../images/potato_ny.png');
+}
+
+.new-year-theme .statham-mode .hero-image {
+    background-image: url('../images/statham.png');
+}
+
 .hero-image:hover {
     transform: scale(1.06);
 }
