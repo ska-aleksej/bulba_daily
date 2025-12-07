@@ -222,6 +222,9 @@ body {
 
 .statham-mode .hero-image {
     background-image: url('../images/statham.png');
+    transform-origin: top center;
+    scale: 1.25;
+    transition: none;
 }
 
 .new-year-theme .hero-image {
@@ -229,10 +232,14 @@ body {
 }
 
 .new-year-theme .statham-mode .hero-image {
-    background-image: url('../images/statham.png');
+    background-image: url('../images/statham_ny.png');
+    transform-origin: top center;
+    scale: 1.25;
+    transition: none;
+    
 }
 
-.hero-image:hover {
+.hero-image:hover:not(.statham-mode .hero-image) {
     transform: scale(1.06);
 }
 
