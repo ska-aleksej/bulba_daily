@@ -681,22 +681,10 @@ const weatherCities = [
         bgImage: "images/cities/minsk-bg.jpg"
     },
     {
-        displayName: "Могилев",
-        lat: 53.8973,
-        lon: 30.3381,
-        bgImage: "images/cities/mogilev-bg.jpg"
-    },
-    {
         displayName: "Омск",
         lat: 54.9737,
         lon: 73.4005,
         bgImage: "images/cities/omsk-bg.jpg"
-    },
-    {
-        displayName: "Secret Place",
-        lat: 5.38,
-        lon: 73.48,
-        bgImage: "images/cities/jawakara-bg.jpg"
     }
 ];
 
