@@ -133,10 +133,20 @@ function displayNames(names) {
 
 function getExtraHolidays() {
     const today = new Date();
+    const month = today.getMonth();
+    const day = today.getDate();
+
+    const extraHolidays = [];
+
     if (today.getDay() === 5) {
-        return [{ name: "Пятница! Заряжаем батарейки на выходные!", isExtra: true }];
+        extraHolidays.push({ name: "Пятница! Заряжаем батарейки на выходные!", isExtra: true });
     }
-    return [];
+
+    if (month === 11 && day === 31) {
+        extraHolidays.push({ name: "🎄 С наступающим Новым годом!!! 🎉", isExtra: true });
+    }
+
+    return extraHolidays;
 }
 
 function displayHolidays(holidays) {
