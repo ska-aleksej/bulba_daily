@@ -332,28 +332,8 @@ function calculateTimeToFriday() {
     return { days, hours, minutes, seconds };
 }
 
-function calculateTimeToNewYear() {
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    const newYear = new Date(currentYear + 1, 0, 1, 0, 0, 0);
-
-    const timeDiff = newYear.getTime() - now.getTime();
-
-    if (timeDiff <= 0) {
-        return { isExpired: true };
-    }
-
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-    return { days, hours, minutes, seconds };
-}
-
 function updateAllTimers() {
     updateTimer('friday', calculateTimeToFriday());
-    updateTimer('new-year', calculateTimeToNewYear());
 }
 
 async function initApp() {

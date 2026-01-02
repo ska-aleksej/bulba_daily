@@ -92,35 +92,6 @@ body {
     box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
 }
 
-.timer-container[data-timer-id="new-year"] {
-    background-image: url('../images/ny_timer_bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
-
-.timer-container[data-timer-id="new-year"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3); /* Полупрозрачное затемнение */
-    border-radius: 15px;
-    z-index: 1;
-}
-
-.timer-container.expired-mode[data-timer-id="new-year"] {
-    background-blend-mode: lighten;
-}
-
-.timer-container[data-timer-id="new-year"] > * {
-    position: relative;
-    z-index: 2;
-}
-
 .timer {
     display: flex;
     gap: 0.3rem;
