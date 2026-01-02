@@ -12,7 +12,7 @@ function updateTeamName() {
 
     const footerText = document.querySelector('.footer p');
     if (footerText) {
-        footerText.textContent = `© 2025 ${teamName}`;
+        footerText.textContent = `© 2026 ${teamName}`;
     }
 }
 
