@@ -198,18 +198,6 @@ body {
     transition: none;
 }
 
-.new-year-theme .hero-image {
-    background-image: url('../images/potato_ny.png');
-}
-
-.new-year-theme .statham-mode .hero-image {
-    background-image: url('../images/statham_ny.png');
-    transform-origin: top center;
-    scale: 1.25;
-    transition: none;
-    
-}
-
 .hero-image:hover:not(.statham-mode .hero-image) {
     transform: scale(1.06);
 }

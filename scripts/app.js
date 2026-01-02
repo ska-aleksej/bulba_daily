@@ -16,22 +16,6 @@ function updateTeamName() {
     }
 }
 
-function setNewYearTheme() {
-    const now = new Date();
-    const month = now.getMonth();
-    const day = now.getDate();
-
-    // Новогодняя тема: декабрь или 1 января
-    const isNewYearSeason = month === 11 || (month === 0 && day === 1);
-
-    const body = document.body;
-    if (isNewYearSeason) {
-        body.classList.add('new-year-theme');
-    } else {
-        body.classList.remove('new-year-theme');
-    }
-}
-
 function getRandomQuoteFromData(isStathamMode = false) {
     return getRandomQuote(isStathamMode);
 }
@@ -137,10 +121,6 @@ function getExtraHolidays() {
     const day = today.getDate();
 
     const extraHolidays = [];
-
-    if (today.getDay() === 5) {
-        extraHolidays.push({ name: "Пятница! Заряжаем батарейки на выходные!", isExtra: true });
-    }
 
     if (month === 11 && day === 31) {
         extraHolidays.push({ name: "🎄 С наступающим Новым годом!!! 🎉", isExtra: true });
@@ -337,7 +317,6 @@ function updateAllTimers() {
 }
 
 async function initApp() {
-    setNewYearTheme(); // Устанавливаем новогоднюю тему
     updateTeamName();
     subscribe(SETTING_TEAM_NAME, updateTeamName);
 
