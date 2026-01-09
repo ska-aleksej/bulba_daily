@@ -94,124 +94,6 @@ body {
     letter-spacing: -0.01em;
 }
 
-.quote-section {
-    margin-bottom: 24px;
-}
-
-.quote-speech-bubble {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    position: relative;
-}
-
-.hero-image {
-    width: 120px;
-    height: 120px;
-    background-image: url('../images/potato.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    flex-shrink: 0;
-    transition: transform 0.25s ease;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-}
-
-.statham-mode .hero-image {
-    background-image: url('../images/statham.png');
-    transform-origin: top center;
-    scale: 1.25;
-    transition: none;
-}
-
-.hero-image:hover:not(.statham-mode .hero-image) {
-    transform: scale(1.06);
-}
-
-.speech-bubble {
-    background: var(--background-white);
-    padding: 20px 24px;
-    border-radius: 20px;
-    border: 2px solid var(--medium-blue);
-    position: relative;
-    flex: 1;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.speech-bubble::before {
-    content: '';
-    position: absolute;
-    left: -12px;
-    top: 30px;
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-right: 12px solid var(--medium-blue);
-}
-
-.speech-bubble::after {
-    content: '';
-    position: absolute;
-    left: -8px;
-    top: 32px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid var(--background-white);
-}
-
-.quote {
-    font-size: 18px;
-    font-style: italic;
-    color: var(--primary-text);
-    margin-bottom: 16px;
-    line-height: 1.7;
-    position: relative;
-    padding-left: 20px;
-}
-
-.quote::before {
-    content: '"';
-    font-size: 28px;
-    color: var(--bright-blue);
-    position: absolute;
-    top: -5px;
-    left: 0;
-    font-family: serif;
-    font-weight: bold;
-}
-
-.quote::after {
-    content: '"';
-    font-size: 28px;
-    color: var(--bright-blue);
-    position: absolute;
-    bottom: -15px;
-    right: -5px;
-    font-family: serif;
-    font-weight: bold;
-}
-
-.quote-author {
-    font-size: 16px;
-    color: var(--secondary-text);
-    font-weight: 500;
-    display: block;
-    margin-top: 12px;
-    font-style: normal;
-}
-
-.statham-mode .quote-author {
-    display: none;
-}
-
-.quote-container,
 .weather-container,
 .names-container,
 .holidays-container {
@@ -221,40 +103,6 @@ body {
     border: 1px solid var(--border-color);
     box-shadow: none;
     background: linear-gradient(135deg, var(--background-white) 0%, var(--light-blue) 100%);
-}
-
-.quote-container.statham-mode {
-    background: linear-gradient(145deg, #1D3A5F, var(--primary-text));
-    border: 2px solid #3A5E8A;
-    color: #f5f5f5;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.quote-container.statham-mode .section-title {
-    color: #fff;
-}
-
-.quote-container.statham-mode .speech-bubble {
-    background: #2C4A70;
-    border: 2px solid var(--medium-blue);
-}
-
-.quote-container.statham-mode .speech-bubble::before {
-    border-right-color: var(--medium-blue);
-}
-
-.quote-container.statham-mode .speech-bubble::after {
-    border-right-color: #2C4A70;
-}
-
-.quote-container.statham-mode .quote {
-    color: #f0f0f0;
-    font-weight: 600;
-}
-
-.quote-container.statham-mode .quote::before,
-.quote-container.statham-mode .quote::after {
-    color: var(--warning-orange);
 }
 
 .weather-section,
@@ -566,39 +414,9 @@ body {
    }
 
    .weather-container,
-   .quote-container,
    .holidays-container,
    .names-container {
        padding: 20px;
-   }
-
-   .quote-speech-bubble {
-       flex-direction: column;
-       align-items: center;
-       gap: 15px;
-   }
-
-   .hero-image {
-       width: 80px;
-       height: 80px;
-   }
-
-   .speech-bubble {
-       padding: 16px 20px;
-   }
-
-   .speech-bubble::before,
-   .speech-bubble::after {
-       display: none;
-   }
-
-   .quote {
-       font-size: 16px;
-   }
-
-   .quote::before,
-   .quote::after {
-       font-size: 20px;
    }
 
    .holiday-item {

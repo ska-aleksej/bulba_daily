@@ -1,5 +1,5 @@
-import { getRandomQuote, isVipName, getWeatherCities, getWeatherEmoji } from '../data/data.js';
-import { getSetting, subscribe, SETTING_TEAM_NAME, SETTING_STATHAM_MODE, toggleStathamMode } from './settings/settings.js';
+import { isVipName, getWeatherCities, getWeatherEmoji } from '../data/data.js';
+import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
 
 function updateTeamName() {
     const teamName = getSetting(SETTING_TEAM_NAME, 'Bulba Daily');
@@ -14,27 +14,6 @@ function updateTeamName() {
     if (footerText) {
         footerText.textContent = `© 2026 ${teamName}`;
     }
-}
-
-function getRandomQuoteFromData(isStathamMode = false) {
-    return getRandomQuote(isStathamMode);
-}
-
-function displayDailyQuote() {
-    const isStathamMode = getSetting(SETTING_STATHAM_MODE, false);
-    const quoteContainer = document.querySelector('.quote-container');
-    const quoteTitle = quoteContainer.querySelector('.section-title');
-
-    if (quoteContainer) {
-        quoteContainer.classList.toggle('statham-mode', isStathamMode);
-    }
-    if (quoteTitle) {
-        quoteTitle.textContent = isStathamMode ? 'Пацанская мудрость' : 'Цитата дня';
-    }
-
-    const quote = getRandomQuoteFromData(isStathamMode);
-    document.getElementById('daily-quote').textContent = quote.text;
-    document.getElementById('quote-author').textContent = `— ${quote.author}`;
 }
 
 async function fetchWithRetry(url, retries = 3, delay = 1000) {
@@ -218,9 +197,6 @@ async function initApp() {
     updateTeamName();
     subscribe(SETTING_TEAM_NAME, updateTeamName);
 
-    displayDailyQuote();
-    subscribe(SETTING_STATHAM_MODE, displayDailyQuote);
-
     loadWeatherForCities();
 
     // Показываем индикаторы загрузки
@@ -241,17 +217,6 @@ async function initApp() {
         console.error('Ошибка при загрузке данных:', error);
         document.getElementById('holidays-list').innerHTML = '<li class="holiday-item">Ошибка загрузки праздников</li>';
         document.getElementById('names-list').innerHTML = '<div class="name-item">Ошибка загрузки именин</div>';
-    }
-
-    const heroImage = document.querySelector('.hero-image');
-    if (heroImage) {
-        heroImage.addEventListener('click', (event) => {
-            if (event.ctrlKey || event.metaKey) {
-                toggleStathamMode();
-            } else {
-                displayDailyQuote();
-            }
-        });
     }
 }
 

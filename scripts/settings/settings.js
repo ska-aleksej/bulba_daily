@@ -1,6 +1,5 @@
 const SETTINGS_PREFIX = 'bulba.daily.';
 const SETTING_TEAM_NAME = 'team.name';
-const SETTING_STATHAM_MODE = 'statham.mode';
 
 const subscribers = {};
 
@@ -27,11 +26,6 @@ function setSetting(key, value) {
     }
 }
 
-function toggleStathamMode() {
-    const currentMode = getSetting(SETTING_STATHAM_MODE, false);
-    setSetting(SETTING_STATHAM_MODE, !currentMode);
-}
-
 function subscribe(key, callback) {
     if (!subscribers[key]) {
         subscribers[key] = [];
@@ -39,7 +33,7 @@ function subscribe(key, callback) {
     subscribers[key].push(callback);
 }
 
-export { getSetting, setSetting, subscribe, SETTING_TEAM_NAME, SETTING_STATHAM_MODE, toggleStathamMode };
+export { getSetting, setSetting, subscribe, SETTING_TEAM_NAME };
 
 // Временный глобальный доступ для отладки
 window.setSetting = setSetting;
