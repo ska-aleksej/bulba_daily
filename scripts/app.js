@@ -9,11 +9,6 @@ function updateTeamName() {
     if (headerTitle) {
         headerTitle.textContent = teamName;
     }
-
-    const footerText = document.querySelector('.footer p');
-    if (footerText) {
-        footerText.textContent = `© 2026 ${teamName}`;
-    }
 }
 
 async function fetchWithRetry(url, retries = 3, delay = 1000) {
