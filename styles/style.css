@@ -77,76 +77,6 @@ body {
     padding: 8px 0;
 }
 
-.timers-wrapper {
-    display: flex;
-    gap: 1rem;
-}
-
-.timer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-    padding: 0.7rem 1.3rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
-}
-
-.timer {
-    display: flex;
-    gap: 0.3rem;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: white;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.timer-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
-}
-
-.timer-value {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 0.4rem 0.7rem;
-    border-radius: 8px;
-    min-width: 2.5rem;
-    text-align: center;
-    font-size: 1.3rem;
-}
-
-.timer-unit-label {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-    text-transform: lowercase;
-}
-
-.timer-separator {
-    font-size: 1.3rem;
-    margin: 0 0.1rem;
-    align-self: flex-start;
-    padding-top: 0.4rem;
-}
-
-.timer-label {
-    font-size: 0.9rem;
-    color: white;
-    margin-bottom : 0.5rem;
-    font-weight: 500;
-}
-
-.timer-container.weekend-mode {
-    background: linear-gradient(45deg, var(--success-green), #57D9A3);
-}
-
-.timer-container.weekend-mode .timer-label {
-    color: white;
-}
-
 .main-content {
     flex: 1;
     max-width: 1200px;
@@ -627,34 +557,9 @@ body {
        padding: 0 16px;
    }
 
-   .timers-wrapper {
-       flex-direction: row;
-       justify-content: center;
-       flex-wrap: wrap;
-       gap: 12px;
-   }
-
    .title {
        font-size: 24px;
    }
-
-   .timer {
-       font-size: 1rem;
-   }
-
-    .timer-value {
-        font-size: 1.1rem;
-        padding: 0.3rem 0.5rem;
-        min-width: 2rem;
-    }
-
-    .timer-unit-label {
-        font-size: 0.65rem;
-    }
-
-    .timer-separator {
-        font-size: 1.1rem;
-    }
 
    .main-content {
        padding: 16px;
