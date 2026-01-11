@@ -1,4 +1,4 @@
-import { isVipName, getWeatherCities, getWeatherEmoji } from '../data/data.js';
+import { isVipName, getWeatherCities, getWeatherEmoji, getBirthdays } from '../data/data.js';
 import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
 
 function updateTeamName() {
@@ -99,6 +99,13 @@ function getExtraHolidays() {
     if (month === 11 && day === 31) {
         extraHolidays.push({ name: "🎄 С наступающим Новым годом!!! 🎉", isExtra: true });
     }
+
+    const birthdays = getBirthdays();
+    birthdays.forEach(birthday => {
+        if (birthday.month === month && birthday.day === day) {
+            extraHolidays.push({ name: `🎂 День рождения: ${birthday.name}!`, isExtra: true });
+        }
+    });
 
     return extraHolidays;
 }
