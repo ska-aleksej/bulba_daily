@@ -47,17 +47,35 @@ async function loadDataFromAPI() {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
 
-        // Извлекаем праздники из секции holidays-items
-        const links = [...doc.querySelectorAll(".holidays-items a")];
         const listItems = [...doc.querySelectorAll(".holidays-items li")];
-        
-        const linkHolidays = links.map(a => a.textContent.trim()).filter(h => h.length > 0);
-        const spanHolidays = listItems.map(li => {
-            const firstSpan = li.querySelector('span');
-            return firstSpan ? firstSpan.textContent.trim() : '';
-        }).filter(h => h.length > 0);
-        
-        const holidays = [...linkHolidays, ...spanHolidays];
+
+        const holidays = listItems.map(li => {
+            const link = li.querySelector('a');
+            const nameFromLink = link ? link.textContent.trim() : null;
+
+            let nameFromSpan = null;
+            if (!nameFromLink) {
+                const spans = li.querySelectorAll('span');
+                for (const span of spans) {
+                    if (!span.className) {
+                        nameFromSpan = span.textContent.trim();
+                        break;
+                    }
+                }
+            }
+
+            const greySpan = li.querySelector('span.grey');
+            const extraInfo = greySpan ? greySpan.textContent.trim() : null;
+
+            const descParagraph = li.querySelector('p.short_description');
+            const description = descParagraph ? descParagraph.textContent.trim() : null;
+
+            return {
+                name: nameFromLink || nameFromSpan || '',
+                extraInfo: extraInfo,
+                description: description
+            };
+        }).filter(h => h.name.length > 0);
 
         // Извлекаем имена из секции holidays-name-days
         const nameLinks = [...doc.querySelectorAll(".holidays-name-days a")];
@@ -97,13 +115,13 @@ function getExtraHolidays() {
     const extraHolidays = [];
 
     if (month === 11 && day === 31) {
-        extraHolidays.push({ name: "🎄 С наступающим Новым годом!!! 🎉", isExtra: true });
+        extraHolidays.push({ name: "🎄 С наступающим Новым годом!!! 🎉", extraInfo: null, description: null, isExtra: true });
     }
 
     const birthdays = getBirthdays();
     birthdays.forEach(birthday => {
         if (birthday.month === month && birthday.day === day) {
-            extraHolidays.push({ name: `🎂 День рождения: ${birthday.name}!`, isExtra: true });
+            extraHolidays.push({ name: `🎂 День рождения: ${birthday.name}!`, extraInfo: null, description: null, isExtra: true });
         }
     });
 
@@ -113,7 +131,7 @@ function getExtraHolidays() {
 function displayHolidays(holidays) {
     const holidaysList = document.getElementById('holidays-list');
     const extraHolidays = getExtraHolidays();
-    const allHolidays = [...extraHolidays, ...holidays.map(h => ({ name: h, isExtra: false }))];
+    const allHolidays = [...extraHolidays, ...holidays.map(h => ({ ...h, isExtra: false }))];
 
     if (allHolidays && allHolidays.length > 0) {
         holidaysList.innerHTML = '';
@@ -124,6 +142,20 @@ function displayHolidays(holidays) {
                 li.classList.add('extra-holiday-item');
             }
             li.textContent = holiday.name;
+
+            if (holiday.extraInfo) {
+                const extraSpan = document.createElement('span');
+                extraSpan.className = 'holiday-extra-info';
+                extraSpan.textContent = holiday.extraInfo;
+                li.appendChild(extraSpan);
+            }
+
+            if (holiday.description) {
+                const descDiv = document.createElement('div');
+                descDiv.className = 'holiday-description';
+                descDiv.textContent = holiday.description;
+                li.appendChild(descDiv);
+            }
             holidaysList.appendChild(li);
         });
     } else {
