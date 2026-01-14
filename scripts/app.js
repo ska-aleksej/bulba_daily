@@ -1,5 +1,6 @@
 import { isVipName, getWeatherCities, getWeatherEmoji, getBirthdays } from '../data/data.js';
 import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
+import { getNearestBirthday, getBirthdayText } from './birthdays/birthdays.js';
 
 function updateTeamName() {
     const teamName = getSetting(SETTING_TEAM_NAME, 'Bulba Daily');
@@ -8,6 +9,27 @@ function updateTeamName() {
     const headerTitle = document.querySelector('.title');
     if (headerTitle) {
         headerTitle.textContent = teamName;
+    }
+}
+
+function updateBirthdayWidget() {
+    const nearest = getNearestBirthday();
+    const text = getBirthdayText();
+    const widget = document.querySelector('.birthday-widget');
+    const countElement = document.querySelector('.birthday-count');
+    const confettiElements = document.querySelectorAll('.confetti');
+
+    if (countElement) {
+        countElement.textContent = text;
+    }
+
+    // Показываем конфетти только если сегодня день рождения
+    if (nearest.isToday) {
+        confettiElements.forEach(el => el.style.display = '');
+        widget?.classList.add('today');
+    } else {
+        confettiElements.forEach(el => el.style.display = 'none');
+        widget?.classList.remove('today');
     }
 }
 
@@ -230,6 +252,7 @@ function displayWeatherCard(city, weatherData) {
 async function initApp() {
     updateTeamName();
     subscribe(SETTING_TEAM_NAME, updateTeamName);
+    updateBirthdayWidget();
 
     loadWeatherForCities();
 
