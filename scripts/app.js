@@ -1,6 +1,6 @@
 import { isVipName, getWeatherCities, getWeatherEmoji, getBirthdays } from '../data/data.js';
 import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
-import { getNearestBirthday, getBirthdayText } from './birthdays/birthdays.js';
+import { getNearestBirthday, getBirthdayText, renderBirthdayList } from './birthdays/birthdays.js';
 
 function updateTeamName() {
     const teamName = getSetting(SETTING_TEAM_NAME, 'Bulba Daily');
@@ -253,6 +253,12 @@ async function initApp() {
     updateTeamName();
     subscribe(SETTING_TEAM_NAME, updateTeamName);
     updateBirthdayWidget();
+
+    // Рендерим список дней рождения
+    const birthdayListContainer = document.querySelector('.birthday-list');
+    if (birthdayListContainer) {
+        renderBirthdayList(birthdayListContainer);
+    }
 
     loadWeatherForCities();
 

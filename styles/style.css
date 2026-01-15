@@ -466,7 +466,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
-    overflow: hidden;
+    z-index: 100;
 }
 
 .birthday-widget.festive {
@@ -553,4 +553,189 @@ body {
     .birthday-widget {
         padding: 4px 8px;
     }
+
+    /* Мобильные стили для выпадающего меню */
+    .birthday-dropdown {
+        width: calc(100vw - 40px);
+        max-width: 300px;
+    }
+
+    .birthday-list-item {
+        padding: 12px 14px;
+    }
+
+    .birthday-avatar {
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
+    }
+
+    .birthday-name {
+        font-size: 14px;
+    }
+
+    .birthday-date {
+        font-size: 12px;
+    }
+
+    .days-count {
+        font-size: 14px;
+    }
+
+    .days-label {
+        font-size: 10px;
+    }
+}
+
+/* === ВЫПАДАЮЩЕЕ МЕНЮ ДНЕЙ РОЖДЕНИЯ === */
+.birthday-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 340px;
+    background: var(--background-white);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.25s ease;
+    z-index: 200;
+}
+
+.birthday-widget:hover .birthday-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.birthday-dropdown-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(135deg, var(--light-blue) 0%, var(--medium-blue) 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.birthday-dropdown-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin: 0;
+}
+
+.birthday-list {
+    max-height: 450px;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+/* Скроллбар для списка */
+.birthday-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.birthday-list::-webkit-scrollbar-track {
+    background: var(--background-light);
+    border-radius: 3px;
+}
+
+.birthday-list::-webkit-scrollbar-thumb {
+    background: var(--medium-blue);
+    border-radius: 3px;
+}
+
+.birthday-list::-webkit-scrollbar-thumb:hover {
+    background: var(--bright-blue);
+}
+
+/* Элементы списка дней рождения */
+.birthday-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.birthday-list-item:hover {
+    background: var(--light-blue);
+}
+
+.birthday-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--bright-blue), var(--deep-blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+}
+
+.birthday-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.birthday-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary-text);
+    margin-bottom: 2px;
+}
+
+.birthday-date {
+    font-size: 13px;
+    color: var(--secondary-text);
+}
+
+.birthday-days {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.days-count {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent-blue);
+}
+
+.days-count.urgent {
+    color: var(--error-red);
+}
+
+.days-count.soon {
+    color: var(--warning-orange);
+}
+
+.days-label {
+    font-size: 11px;
+    color: var(--secondary-text);
+}
+
+/* Индикатор "сегодня" */
+.birthday-list-item.today {
+    background: linear-gradient(135deg, #fff9e6, #fff3cd);
+    border: 1px solid #ffd54f;
+}
+
+.birthday-list-item.today .days-count {
+    color: #ff8c00;
+}
+
+.today-badge {
+    display: inline-block;
+    background: #ff8c00;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    text-transform: uppercase;
 }
