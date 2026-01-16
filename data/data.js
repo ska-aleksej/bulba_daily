@@ -8,7 +8,7 @@ const birthdays = [
     { name: "Стас", day: 21, month: 9 },
     { name: "Юра", day: 21, month: 8 },
     { name: "Игорь", day: 19, month: 4 },
-    { name: "Лёня", day: 20, month: 5 },
+    { name: "Лёня", day: 30, month: 5 },
     { name: "Артем", day: 11, month: 1 },
     { name: "Коля", day: 21, month: 7 },
     { name: "Даша", day: 18, month: 9 },
