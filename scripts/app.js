@@ -23,13 +23,28 @@ function updateBirthdayWidget() {
         countElement.textContent = text;
     }
 
-    // Показываем конфетти только если сегодня день рождения
-    if (nearest.isToday) {
-        confettiElements.forEach(el => el.style.display = '');
-        widget?.classList.add('today');
+    if (!widget) return;
+
+    // Определяем стиль виджета в зависимости от количества дней
+    if (nearest.isToday || nearest.days <= 7) {
+        // Праздничный стиль: сегодня или осталось 7 дней и меньше
+        widget.classList.add('festive');
+        widget.classList.remove('calm');
+
+        // Показываем конфетти только если сегодня день рождения
+        if (nearest.isToday) {
+            confettiElements.forEach(el => el.style.display = '');
+            widget.classList.add('today');
+        } else {
+            confettiElements.forEach(el => el.style.display = 'none');
+            widget.classList.remove('today');
+        }
     } else {
+        // Спокойный стиль: осталось больше 7 дней
+        widget.classList.add('calm');
+        widget.classList.remove('festive');
+        widget.classList.remove('today');
         confettiElements.forEach(el => el.style.display = 'none');
-        widget?.classList.remove('today');
     }
 }
 

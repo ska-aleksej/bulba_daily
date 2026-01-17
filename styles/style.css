@@ -467,6 +467,7 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
     z-index: 100;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .birthday-widget.festive {
@@ -488,7 +489,8 @@ body {
     position: relative;
 }
 
-.gift-icon img {
+.gift-icon img,
+.gift-icon svg {
     width: 100%;
     height: 100%;
     animation: giftBounce 2s ease-in-out infinite;
@@ -496,6 +498,173 @@ body {
 
 .birthday-widget.festive .gift-icon {
     filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.5));
+}
+
+/* Спокойный вариант виджета (> 7 дней) */
+.birthday-widget.calm {
+    background: var(--light-blue);
+    border: 1px solid var(--medium-blue);
+}
+
+.birthday-widget.calm:hover {
+    background: var(--light-blue);
+    border-color: var(--medium-blue);
+}
+
+.birthday-widget.calm .confetti {
+    display: none;
+}
+
+.birthday-widget.calm .gift-icon img,
+.birthday-widget.calm .gift-icon svg {
+    animation: none;
+}
+
+/* Цвета SVG иконки для calm варианта */
+.birthday-widget.calm .gift-box-main {
+    fill: var(--medium-blue);
+}
+
+.birthday-widget.calm .gift-box-shadow {
+    fill: var(--dark-blue);
+}
+
+.birthday-widget.calm .gift-lid-main {
+    fill: var(--bright-blue);
+}
+
+.birthday-widget.calm .gift-lid-highlight {
+    fill: var(--medium-blue);
+}
+
+.birthday-widget.calm .gift-ribbon-main {
+    fill: var(--accent-blue);
+}
+
+.birthday-widget.calm .gift-ribbon-highlight {
+    fill: var(--deep-blue);
+}
+
+.birthday-widget.calm .gift-ribbon-horizontal {
+    fill: var(--accent-blue);
+}
+
+.birthday-widget.calm .gift-ribbon-horizontal-highlight {
+    fill: var(--deep-blue);
+}
+
+.birthday-widget.calm .gift-bow-main {
+    fill: var(--accent-blue);
+}
+
+.birthday-widget.calm .gift-bow-left {
+    fill: var(--deep-blue);
+}
+
+.birthday-widget.calm .gift-bow-right {
+    fill: var(--deep-blue);
+}
+
+.birthday-widget.calm .gift-bow-center {
+    fill: var(--dark-blue);
+}
+
+/* Цвета SVG иконки для festive варианта (по умолчанию) */
+/* Дефолтные цвета SVG иконки (festive) */
+.gift-box-main {
+    fill: #FF6B6B;
+}
+
+.gift-box-shadow {
+    fill: #EE5A5A;
+}
+
+.gift-lid-main {
+    fill: #FF8E8E;
+}
+
+.gift-lid-highlight {
+    fill: #FFA5A5;
+}
+
+.gift-ribbon-main {
+    fill: #FFD93D;
+}
+
+.gift-ribbon-highlight {
+    fill: #FFE066;
+}
+
+.gift-ribbon-horizontal {
+    fill: #FFD93D;
+}
+
+.gift-ribbon-horizontal-highlight {
+    fill: #FFE066;
+}
+
+.gift-bow-main {
+    fill: #FFD93D;
+}
+
+.gift-bow-left {
+    fill: #FFE066;
+}
+
+.gift-bow-right {
+    fill: #FFE066;
+}
+
+.gift-bow-center {
+    fill: #FFC107;
+}
+
+.birthday-widget.festive .gift-box-main {
+    fill: #FF6B6B;
+}
+
+.birthday-widget.festive .gift-box-shadow {
+    fill: #EE5A5A;
+}
+
+.birthday-widget.festive .gift-lid-main {
+    fill: #FF8E8E;
+}
+
+.birthday-widget.festive .gift-lid-highlight {
+    fill: #FFA5A5;
+}
+
+.birthday-widget.festive .gift-ribbon-main {
+    fill: #FFD93D;
+}
+
+.birthday-widget.festive .gift-ribbon-highlight {
+    fill: #FFE066;
+}
+
+.birthday-widget.festive .gift-ribbon-horizontal {
+    fill: #FFD93D;
+}
+
+.birthday-widget.festive .gift-ribbon-horizontal-highlight {
+    fill: #FFE066;
+}
+
+.birthday-widget.festive .gift-bow-main {
+    fill: #FFD93D;
+}
+
+.birthday-widget.festive .gift-bow-left {
+    fill: #FFE066;
+}
+
+.birthday-widget.festive .gift-bow-right {
+    fill: #FFE066;
+}
+
+.birthday-widget.festive .gift-bow-center {
+    fill: #FFC107;
 }
 
 .birthday-count {
@@ -657,6 +826,7 @@ body {
     padding: 14px 16px;
     border-radius: 8px;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .birthday-list-item:hover {
