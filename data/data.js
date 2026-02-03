@@ -1,5 +1,5 @@
 const vipNames = [
-    "Алексей", "Станислав", "Юрий", "Игорь", "Олег", "Леонид", "Артем", "Николай", "Дарья", "Антон"
+    "Алексей", "Станислав", "Юрий", "Олег", "Леонид", "Николай", "Дарья", "Антон"
 ];
 
 const birthdays = [
@@ -7,9 +7,7 @@ const birthdays = [
     { name: "Олег", day: 16, month: 0 },
     { name: "Стас", day: 21, month: 9 },
     { name: "Юра", day: 21, month: 8 },
-    { name: "Игорь", day: 19, month: 4 },
     { name: "Лёня", day: 30, month: 5 },
-    { name: "Артем", day: 11, month: 1 },
     { name: "Коля", day: 21, month: 7 },
     { name: "Даша", day: 18, month: 9 },
     { name: "Антон", day: 9, month: 5 },
@@ -25,12 +23,6 @@ const weatherCities = [
         lat: 52.4064,
         lon: 16.9252,
         bgImage: "images/cities/poznan-bg.jpg"
-    },
-    {
-        displayName: "Пенза",
-        lat: 53.2001,
-        lon: 45.0000,
-        bgImage: "images/cities/penza-bg.jpg"
     },
     {
         displayName: "Минск",
