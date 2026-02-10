@@ -1,11 +1,12 @@
 import { getBirthdays } from '../../data/data.js';
+import { getSetting, SETTING_CUSTOM_BIRTHDAYS } from '../settings/settings.js';
 
 /**
  * Возвращает информацию о ближайшем дне рождения
  * @returns {Object} Объект с полями: days (число дней), isToday (true если сегодня), name (имя)
  */
 function getNearestBirthday() {
-    const birthdays = getBirthdays();
+    const birthdays = [...getBirthdays(), ...getCustomBirthdays()];
     const today = new Date();
     const currentDay = today.getDate();
     const currentMonth = today.getMonth();
@@ -184,7 +185,7 @@ function renderBirthdayList(container) {
         return;
     }
 
-    const birthdays = getBirthdays();
+    const birthdays = [...getBirthdays(), ...getCustomBirthdays()];
     const today = new Date();
 
     // Вычисляем дни до дня рождения для каждого человека
@@ -240,4 +241,25 @@ function renderBirthdayList(container) {
     container.innerHTML = html;
 }
 
-export { renderBirthdayList };
+function getCustomBirthdays() {
+    const customBirthdays = getSetting(SETTING_CUSTOM_BIRTHDAYS, []);
+
+    if (!Array.isArray(customBirthdays)) {
+        return [];
+    }
+
+    return customBirthdays.filter(birthday => {
+        return birthday &&
+               typeof birthday === 'object' &&
+               typeof birthday.name === 'string' &&
+               birthday.name.trim().length > 0 &&
+               typeof birthday.day === 'number' &&
+               birthday.day >= 1 &&
+               birthday.day <= 31 &&
+               typeof birthday.month === 'number' &&
+               birthday.month >= 0 &&
+               birthday.month <= 11;
+    });
+}
+
+export { renderBirthdayList, getCustomBirthdays };

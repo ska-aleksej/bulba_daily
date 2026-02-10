@@ -1,6 +1,6 @@
 import { isVipName, getWeatherCities, getWeatherEmoji, getBirthdays } from '../data/data.js';
 import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
-import { getNearestBirthday, getBirthdayText, renderBirthdayList } from './birthdays/birthdays.js';
+import { getNearestBirthday, getBirthdayText, renderBirthdayList, getCustomBirthdays } from './birthdays/birthdays.js';
 
 function updateTeamName() {
     const teamName = getSetting(SETTING_TEAM_NAME, 'Bulba Daily');
@@ -155,7 +155,8 @@ function getExtraHolidays() {
         extraHolidays.push({ name: "🎄 С наступающим Новым годом!!! 🎉", extraInfo: null, description: null, isExtra: true });
     }
 
-    const birthdays = getBirthdays();
+    const birthdays = [...getBirthdays(), ...getCustomBirthdays()];
+
     birthdays.forEach(birthday => {
         if (birthday.month === month && birthday.day === day) {
             extraHolidays.push({ name: `🎂 День рождения: ${birthday.name}!`, extraInfo: null, description: null, isExtra: true });
