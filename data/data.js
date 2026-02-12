@@ -1,5 +1,5 @@
 const vipNames = [
-    "Алексей", "Станислав", "Юрий", "Олег", "Леонид", "Николай", "Дарья", "Антон"
+    "Алексей", "Станислав", "Юрий", "Олег", "Леонид", "Николай", "Дарья", "Антон", "Никита"
 ];
 
 const birthdays = [
@@ -11,6 +11,7 @@ const birthdays = [
     { name: "Коля", day: 21, month: 7 },
     { name: "Даша", day: 18, month: 9 },
     { name: "Антон", day: 9, month: 5 },
+    { name: "Никита", day: 15, month: 3 },
 ];
 
 function isVipName(text) {
@@ -35,6 +36,12 @@ const weatherCities = [
         lat: 54.9737,
         lon: 73.4005,
         bgImage: "images/cities/omsk-bg.jpg"
+    },
+    {
+        displayName: "Самара",
+        lat: 53.241505,
+        lon: 50.221245,
+        bgImage: "images/cities/samara-bg.jpg"
     }
 ];
 
