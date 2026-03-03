@@ -152,7 +152,25 @@ function getExtraHolidays() {
     const extraHolidays = [];
 
     if (month === 11 && day === 31) {
-        extraHolidays.push({ name: "🎄 С наступающим Новым годом!!! 🎉", extraInfo: null, description: null, isExtra: true });
+        extraHolidays.push(
+            { 
+                name: "🎄 С наступающим Новым годом!!! 🎉",
+                extraInfo: null,
+                description: null,
+                isExtra: true
+            }
+        );
+    }
+
+    if (month === 2 && day === 4) {
+        extraHolidays.push(
+            { 
+                name: "Bulba-выборы 📝",
+                extraInfo: "сезон 2",
+                description: "Добровольно-принудительное распределение командных активностей на ближайшие пару месяцев",
+                isExtra: false 
+            }
+        );
     }
 
     const birthdays = [...getBirthdays(), ...getCustomBirthdays()];
