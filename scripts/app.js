@@ -1,6 +1,7 @@
 import { isVipName, getWeatherCities, getWeatherEmoji, getBirthdays } from '../data/data.js';
 import { getSetting, subscribe, SETTING_TEAM_NAME } from './settings/settings.js';
 import { getNearestBirthday, getBirthdayText, renderBirthdayList, getCustomBirthdays } from './birthdays/birthdays.js';
+import { initTheme, renderThemeToggle } from './theme/theme.js';
 
 function updateTeamName() {
     const teamName = getSetting(SETTING_TEAM_NAME, 'Bulba Daily');
@@ -284,6 +285,8 @@ function displayWeatherCard(city, weatherData) {
 }
 
 async function initApp() {
+    initTheme();
+    renderThemeToggle();
     updateTeamName();
     subscribe(SETTING_TEAM_NAME, updateTeamName);
     updateBirthdayWidget();

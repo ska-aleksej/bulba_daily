@@ -1,6 +1,7 @@
 const SETTINGS_PREFIX = 'bulba.daily.';
 const SETTING_TEAM_NAME = 'team.name';
 const SETTING_CUSTOM_BIRTHDAYS = 'custom.birthdays';
+const SETTING_THEME = 'theme';
 
 const subscribers = {};
 
@@ -34,7 +35,7 @@ function subscribe(key, callback) {
     subscribers[key].push(callback);
 }
 
-export { getSetting, setSetting, subscribe, SETTING_TEAM_NAME, SETTING_CUSTOM_BIRTHDAYS };
+export { getSetting, setSetting, subscribe, SETTING_TEAM_NAME, SETTING_CUSTOM_BIRTHDAYS, SETTING_THEME };
 
 // Временный глобальный доступ для отладки
 window.setSetting = setSetting;

@@ -8,7 +8,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     line-height: 1.5;
     color: var(--primary-text);
-    background: var(--background-light);
+    background: var(--surface-primary);
     min-height: 100vh;
     font-size: 14px;
 }
@@ -18,9 +18,77 @@ body {
     --secondary-text: #5E6C84;
     --accent-blue: #0052CC;
     --border-color: #DFE1E6;
-    --background-light: #F4F5F7;
-    --background-white: #FFFFFF;
-    --section-title: #174b99;
+    --surface-primary: #F8F9FA;
+    --surface-secondary: #FFFFFF;
+    --text-title: #172B4D;
+    --text-section: #174b99;
+    --theme-toggle-hover: #E6F7FF;
+    --theme-toggle-icon: #172B4D;
+
+    --holiday-bg: #E6F7FF;
+    --holiday-border: #91D5FF;
+    --holiday-text: #172B4D;
+    --holiday-hover-bg: #91D5FF;
+    --holiday-hover-border: #40A9FF;
+    --holiday-extra-bg: #fff3cd;
+    --holiday-extra-border: #ffa500;
+    --holiday-description-text: #5E6C84;
+    --holiday-extra-info-text: #5E6C84;
+    --vip-name-text: #8B4513;
+
+    --widget-calm-bg: #E6F7FF;
+    --widget-calm-border: #91D5FF;
+    --widget-calm-gift-box: #91D5FF;
+    --widget-calm-gift-shadow: #096DD9;
+    --widget-calm-gift-lid: #40A9FF;
+    --widget-calm-gift-lid-highlight: #91D5FF;
+    --widget-calm-ribbon: #0052CC;
+    --widget-calm-ribbon-highlight: #1890FF;
+    --widget-calm-ribbon-h: #0052CC;
+    --widget-calm-ribbon-h-highlight: #1890FF;
+    --widget-calm-bow: #0052CC;
+    --widget-calm-bow-left: #1890FF;
+    --widget-calm-bow-right: #1890FF;
+    --widget-calm-bow-center: #096DD9;
+    --dropdown-header-bg: linear-gradient(135deg, #E6F7FF 0%, #91D5FF 100%);
+    --dropdown-header-text: #172B4D;
+    --dropdown-item-hover: #E6F7FF;
+    --dropdown-avatar-bg: linear-gradient(135deg, #40A9FF, #1890FF);
+    --dropdown-name: #172B4D;
+    --dropdown-date: #5E6C84;
+    --dropdown-days: #0052CC;
+    --dropdown-days-label: #5E6C84;
+    --dropdown-scrollbar-thumb: #91D5FF;
+    --dropdown-scrollbar-thumb-hover: #40A9FF;
+    --dropdown-today-bg: linear-gradient(135deg, #fff9e6, #fff3cd);
+    --dropdown-today-border: #ffd54f;
+    --dropdown-today-days: #ff8c00;
+    --today-badge-bg: #ff8c00;
+    --today-badge-text: white;
+    --widget-count-text: #172B4D;
+    --container-bg-gradient: linear-gradient(135deg, var(--surface-secondary) 0%, var(--light-blue) 100%);
+    --weather-card-border: var(--medium-blue);
+    --weather-card-border-hover: var(--bright-blue);
+    --weather-city-text: #172B4D;
+    --weather-temperature-text: #172B4D;
+    --weather-gradient: linear-gradient(to right,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.85) 30%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.3) 70%,
+    rgba(255, 255, 255, 0.1) 85%,
+    transparent 100%
+    );
+    --weather-gradient-hover: linear-gradient(to right,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.75) 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.25) 70%,
+    rgba(255, 255, 255, 0.05) 85%,
+    transparent 100%
+    );
+    --weather-details-text: #5E6C84;
+    --weather-feels-like-text: #5E6C84;
 
     --light-blue: #E6F7FF;
     --medium-blue: #91D5FF;
@@ -33,6 +101,80 @@ body {
     --error-red: #DE350B;
 }
 
+body.dark {
+    --surface-primary: #1E2124;
+    --surface-secondary: #252A2F;
+    --text-title: #FFFFFF;
+    --text-section: #E0E0E0;
+    --theme-toggle-hover: rgba(64, 169, 255, 0.15);
+    --theme-toggle-icon: #FFFFFF;
+
+    --holiday-bg: rgba(0, 82, 204, 0.35);
+    --holiday-border: rgba(0, 82, 204, 0.45);
+    --holiday-text: #E0E0E0;
+    --holiday-hover-bg: rgba(0, 82, 204, 0.45);
+    --holiday-hover-border: rgba(64, 169, 255, 0.55);
+    --holiday-extra-bg: rgba(255, 153, 31, 0.35);
+    --holiday-extra-border: rgba(255, 153, 31, 0.45);
+    --holiday-description-text: #A0A0A0;
+    --holiday-extra-info-text: #A0A0A0;
+    --vip-name-text: #8B4513;
+
+    --widget-calm-bg: rgba(0, 82, 204, 0.25);
+    --widget-calm-border: rgba(0, 82, 204, 0.35);
+    --widget-calm-gift-box: rgba(145, 213, 255, 0.7);
+    --widget-calm-gift-shadow: rgba(145, 213, 255, 0.85);
+    --widget-calm-gift-lid: rgba(64, 169, 255, 0.8);
+    --widget-calm-gift-lid-highlight: rgba(145, 213, 255, 0.7);
+    --widget-calm-ribbon: rgba(0, 82, 204, 0.7);
+    --widget-calm-ribbon-highlight: rgba(24, 144, 255, 0.8);
+    --widget-calm-ribbon-h: rgba(0, 82, 204, 0.7);
+    --widget-calm-ribbon-h-highlight: rgba(24, 144, 255, 0.8);
+    --widget-calm-bow: rgba(0, 82, 204, 0.7);
+    --widget-calm-bow-left: rgba(24, 144, 255, 0.8);
+    --widget-calm-bow-right: rgba(24, 144, 255, 0.8);
+    --widget-calm-bow-center: rgba(145, 213, 255, 0.85);
+    --dropdown-header-bg: linear-gradient(135deg, rgba(0, 82, 204, 0.25) 0%, rgba(0, 82, 204, 0.35) 100%);
+    --dropdown-header-text: #E0E0E0;
+    --dropdown-item-hover: rgba(0, 82, 204, 0.2);
+    --dropdown-avatar-bg: linear-gradient(135deg, rgba(64, 169, 255, 0.8), rgba(24, 144, 255, 0.9));
+    --dropdown-name: #E0E0E0;
+    --dropdown-date: #A0A0A0;
+    --dropdown-days: #40A9FF;
+    --dropdown-days-label: #A0A0A0;
+    --dropdown-scrollbar-thumb: rgba(64, 169, 255, 0.4);
+    --dropdown-scrollbar-thumb-hover: rgba(64, 169, 255, 0.6);
+    --dropdown-today-bg: linear-gradient(135deg, rgba(255, 153, 31, 0.25), rgba(255, 153, 31, 0.35));
+    --dropdown-today-border: rgba(255, 153, 31, 0.45);
+    --dropdown-today-days: #FF991F;
+    --today-badge-bg: rgba(255, 153, 31, 0.45);
+    --today-badge-text: #FFFFFF;
+    --widget-count-text: #E0E0E0;
+    --container-bg-gradient: var(--surface-secondary);
+    --weather-card-border: rgba(64, 169, 255, 0.4);
+    --weather-card-border-hover: rgba(64, 169, 255, 0.6);
+    --weather-city-text: #E0E0E0;
+    --weather-temperature-text: #FFFFFF;
+    --weather-gradient: linear-gradient(to right,
+    rgba(30, 33, 36, 0.6) 0%,
+    rgba(30, 33, 36, 0.5) 30%,
+    rgba(30, 33, 36, 0.4) 50%,
+    rgba(30, 33, 36, 0.3) 70%,
+    rgba(30, 33, 36, 0.1) 85%,
+    transparent 100%
+    );
+    --weather-gradient-hover: linear-gradient(to right,
+    rgba(30, 33, 36, 0.7) 0%,
+    rgba(30, 33, 36, 0.6) 30%,
+    rgba(30, 33, 36, 0.5) 50%,
+    rgba(30, 33, 36, 0.35) 70%,
+    rgba(30, 33, 36, 0.15) 85%,
+    transparent 100%
+    );
+    --weather-details-text: #A0A0A0;
+    --weather-feels-like-text: #A0A0A0;
+}
+
 #app {
     min-height: 100vh;
     display: flex;
@@ -42,8 +184,13 @@ body {
     background-size: 180px;
 }
 
+body.dark #app {
+    background-color: rgba(30, 33, 36, 0.7);
+    background-blend-mode: multiply;
+}
+
 .header {
-    background: var(--background-white);
+    background: var(--surface-secondary);
     border-bottom: 1px solid var(--border-color);
     padding: 12px 0;
     position: sticky;
@@ -59,23 +206,57 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .title {
     font-size: 32px;
     font-weight: 700;
-    color: var(--primary-text);
+    color: var(--text-title);
     text-align: center;
     flex: 1;
     letter-spacing: -0.02em;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, var(--primary-text) 0%, var(--accent-blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin: 0;
-    padding: 8px 0;
+    padding: 8px 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.theme-toggle:hover {
+    background: var(--theme-toggle-hover);
+}
+
+.theme-icon {
+    font-size: 24px;
+    line-height: 1;
+    user-select: none;
+    width: 24px;
+    height: 24px;
+}
+
+.theme-icon img {
+    width: 100%;
+    height: 100%;
 }
 
 .main-content {
@@ -89,7 +270,7 @@ body {
 .section-title {
     font-size: 24px;
     font-weight: 700;
-    color: var(--section-title);
+    color: var(--text-section);
     margin-bottom: 20px;
     text-align: left;
     letter-spacing: -0.01em;
@@ -98,12 +279,12 @@ body {
 .weather-container,
 .names-container,
 .holidays-container {
-    background: var(--background-white);
+    background: var(--surface-secondary);
     padding: 28px;
     border-radius: 6px;
     border: 1px solid var(--border-color);
     box-shadow: none;
-    background: linear-gradient(135deg, var(--background-white) 0%, var(--light-blue) 100%);
+    background: var(--container-bg-gradient);
 }
 
 .weather-section,
@@ -120,25 +301,25 @@ body {
 }
 
 .holiday-item {
-    background: var(--light-blue);
-    color: var(--primary-text);
+    background: var(--holiday-bg);
+    color: var(--holiday-text);
     border-radius: 6px;
     font-size: 18px;
     font-weight: 500;
-    border: 1px solid var(--medium-blue);
+    border: 1px solid var(--holiday-border);
     transition: all 0.2s ease;
     position: relative;
     padding: 16px 20px;
 }
 
 .holiday-item:hover {
-    background: var(--medium-blue);
-    border-color: var(--bright-blue);
+    background: var(--holiday-hover-bg);
+    border-color: var(--holiday-hover-border);
     transform: translateY(-1px);
 }
 
 .holiday-extra-info {
-    color: var(--secondary-text);
+    color: var(--holiday-extra-info-text);
     margin-left: 8px;
     font-size: 0.95em;
 }
@@ -146,7 +327,7 @@ body {
 .holiday-description {
     margin-top: 8px;
     font-size: 0.9em;
-    color: var(--secondary-text);
+    color: var(--holiday-description-text);
     line-height: 1.4;
 }
 
@@ -157,12 +338,12 @@ body {
 }
 
 .name-item {
-    background: var(--light-blue);
-    color: var(--primary-text);
+    background: var(--holiday-bg);
+    color: var(--holiday-text);
     border-radius: 6px;
     font-size: 16px;
     font-weight: 500;
-    border: 1px solid var(--medium-blue);
+    border: 1px solid var(--holiday-border);
     transition: all 0.2s ease;
     position: relative;
     padding: 12px 16px 12px 36px;
@@ -181,6 +362,7 @@ body {
     background: linear-gradient(135deg, #fff3cd, #ffd700);
     border: 2px solid #ffa500;
     font-weight: 600;
+    color: var(--vip-name-text);
     box-shadow: 0 2px 8px rgba(255, 165, 0, 0.3);
 }
 
@@ -197,13 +379,13 @@ body {
 }
 
 .name-item:hover {
-    background: var(--medium-blue);
-    border-color: var(--bright-blue);
+    background: var(--holiday-hover-bg);
+    border-color: var(--holiday-hover-border);
     transform: translateY(-1px);
 }
 
 .name-item.loading {
-    background: var(--light-blue);
+    background: var(--holiday-bg);
     color: var(--secondary-text);
     font-style: italic;
     animation: pulse 1.5s ease-in-out infinite;
@@ -215,7 +397,7 @@ body {
 }
 
 .holiday-item.loading {
-    background: var(--light-blue);
+    background: var(--holiday-bg);
     color: var(--secondary-text);
     font-style: italic;
     animation: pulse 1.5s ease-in-out infinite;
@@ -227,14 +409,14 @@ body {
 }
 
 .extra-holiday-item {
-    background-color: #fff3cd;
-    border: 2px solid #ffa500;
+    background-color: var(--holiday-extra-bg);
+    border: 2px solid var(--holiday-extra-border);
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(255, 165, 0, 0.3);
 }
 
 .extra-holiday-item:hover {
-    background-color: #ffd700;
+    background-color: rgba(255, 153, 31, 0.25);
     border-color: #ff8c00;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 165, 0, 0.4);
@@ -247,10 +429,10 @@ body {
 }
 
 .weather-card {
-    background: var(--background-white);
+    background: var(--surface-secondary);
     padding: 0;
     border-radius: 12px;
-    border: 1px solid var(--medium-blue);
+    border: 1px solid var(--weather-card-border);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
     position: relative;
@@ -269,14 +451,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.85) 30%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.3) 70%,
-    rgba(255, 255, 255, 0.1) 85%,
-    transparent 100%
-    );
+    background: var(--weather-gradient);
     z-index: 1;
 }
 
@@ -293,18 +468,11 @@ body {
 .weather-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-color: var(--bright-blue);
+    border-color: var(--weather-card-border-hover);
 }
 
 .weather-card:hover::before {
-    background: linear-gradient(to right,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.75) 30%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0.25) 70%,
-    rgba(255, 255, 255, 0.05) 85%,
-    transparent 100%
-    );
+    background: var(--weather-gradient-hover);
 }
 
 .city-header {
@@ -317,7 +485,7 @@ body {
 .city-header h3 {
     font-size: 20px;
     font-weight: 700;
-    color: var(--primary-text);
+    color: var(--weather-city-text);
     margin: 0;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
@@ -336,12 +504,12 @@ body {
 .temperature {
     font-size: 36px;
     font-weight: 700;
-    color: var(--primary-text);
+    color: var(--weather-temperature-text);
 }
 
 .feels-like {
     font-size: 14px;
-    color: var(--secondary-text);
+    color: var(--weather-feels-like-text);
     margin-bottom: 12px;
 }
 
@@ -349,7 +517,7 @@ body {
     display: flex;
     gap: 16px;
     font-size: 14px;
-    color: var(--secondary-text);
+    color: var(--weather-details-text);
 }
 
 .weather-details span {
@@ -386,17 +554,36 @@ body {
 
 @media (max-width: 768px) {
    .header-content {
-       flex-direction: column;
-       gap: 12px;
+       flex-direction: row;
+       gap: 8px;
        padding: 0 16px;
-       justify-content: center;
+       justify-content: space-between;
+   }
+
+   .birthday-widget {
+       position: relative;
+       left: auto;
+       top: auto;
+       transform: none;
+       flex: 0 0 auto;
    }
 
    .title {
        font-size: 24px;
-       text-align: right;
-       flex: 0 1 auto;
-       width: 100%;
+       text-align: center;
+       flex: 1;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       padding: 0 8px;
+   }
+
+   .theme-toggle {
+       position: relative;
+       right: auto;
+       top: auto;
+       transform: none;
+       flex: 0 0 auto;
    }
 
    .main-content {
@@ -502,13 +689,13 @@ body {
 
 /* Спокойный вариант виджета (> 7 дней) */
 .birthday-widget.calm {
-    background: var(--light-blue);
-    border: 1px solid var(--medium-blue);
+    background: var(--widget-calm-bg);
+    border: 1px solid var(--widget-calm-border);
 }
 
 .birthday-widget.calm:hover {
-    background: var(--light-blue);
-    border-color: var(--medium-blue);
+    background: var(--widget-calm-bg);
+    border-color: var(--widget-calm-border);
 }
 
 .birthday-widget.calm .confetti {
@@ -522,51 +709,51 @@ body {
 
 /* Цвета SVG иконки для calm варианта */
 .birthday-widget.calm .gift-box-main {
-    fill: var(--medium-blue);
+    fill: var(--widget-calm-gift-box);
 }
 
 .birthday-widget.calm .gift-box-shadow {
-    fill: var(--dark-blue);
+    fill: var(--widget-calm-gift-shadow);
 }
 
 .birthday-widget.calm .gift-lid-main {
-    fill: var(--bright-blue);
+    fill: var(--widget-calm-gift-lid);
 }
 
 .birthday-widget.calm .gift-lid-highlight {
-    fill: var(--medium-blue);
+    fill: var(--widget-calm-gift-lid-highlight);
 }
 
 .birthday-widget.calm .gift-ribbon-main {
-    fill: var(--accent-blue);
+    fill: var(--widget-calm-ribbon);
 }
 
 .birthday-widget.calm .gift-ribbon-highlight {
-    fill: var(--deep-blue);
+    fill: var(--widget-calm-ribbon-highlight);
 }
 
 .birthday-widget.calm .gift-ribbon-horizontal {
-    fill: var(--accent-blue);
+    fill: var(--widget-calm-ribbon-h);
 }
 
 .birthday-widget.calm .gift-ribbon-horizontal-highlight {
-    fill: var(--deep-blue);
+    fill: var(--widget-calm-ribbon-h-highlight);
 }
 
 .birthday-widget.calm .gift-bow-main {
-    fill: var(--accent-blue);
+    fill: var(--widget-calm-bow);
 }
 
 .birthday-widget.calm .gift-bow-left {
-    fill: var(--deep-blue);
+    fill: var(--widget-calm-bow-left);
 }
 
 .birthday-widget.calm .gift-bow-right {
-    fill: var(--deep-blue);
+    fill: var(--widget-calm-bow-right);
 }
 
 .birthday-widget.calm .gift-bow-center {
-    fill: var(--dark-blue);
+    fill: var(--widget-calm-bow-center);
 }
 
 /* Цвета SVG иконки для festive варианта (по умолчанию) */
@@ -670,7 +857,7 @@ body {
 .birthday-count {
     font-size: 13px;
     font-weight: 600;
-    color: var(--primary-text);
+    color: var(--widget-count-text);
     white-space: nowrap;
 }
 
@@ -762,7 +949,7 @@ body {
     top: calc(100% + 8px);
     left: 0;
     width: 340px;
-    background: var(--background-white);
+    background: var(--surface-secondary);
     border-radius: 12px;
     border: 1px solid var(--border-color);
     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
@@ -782,14 +969,14 @@ body {
 .birthday-dropdown-header {
     padding: 16px 20px;
     border-bottom: 1px solid var(--border-color);
-    background: linear-gradient(135deg, var(--light-blue) 0%, var(--medium-blue) 100%);
+    background: var(--dropdown-header-bg);
     border-radius: 12px 12px 0 0;
 }
 
 .birthday-dropdown-header h3 {
     font-size: 16px;
     font-weight: 700;
-    color: var(--primary-text);
+    color: var(--dropdown-header-text);
     margin: 0;
 }
 
@@ -805,17 +992,17 @@ body {
 }
 
 .birthday-list::-webkit-scrollbar-track {
-    background: var(--background-light);
+    background: var(--surface-primary);
     border-radius: 3px;
 }
 
 .birthday-list::-webkit-scrollbar-thumb {
-    background: var(--medium-blue);
+    background: var(--dropdown-scrollbar-thumb);
     border-radius: 3px;
 }
 
 .birthday-list::-webkit-scrollbar-thumb:hover {
-    background: var(--bright-blue);
+    background: var(--dropdown-scrollbar-thumb-hover);
 }
 
 /* Элементы списка дней рождения */
@@ -830,14 +1017,14 @@ body {
 }
 
 .birthday-list-item:hover {
-    background: var(--light-blue);
+    background: var(--dropdown-item-hover);
 }
 
 .birthday-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--bright-blue), var(--deep-blue));
+    background: var(--dropdown-avatar-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -855,13 +1042,13 @@ body {
 .birthday-name {
     font-size: 15px;
     font-weight: 600;
-    color: var(--primary-text);
+    color: var(--dropdown-name);
     margin-bottom: 2px;
 }
 
 .birthday-date {
     font-size: 13px;
-    color: var(--secondary-text);
+    color: var(--dropdown-date);
 }
 
 .birthday-days {
@@ -872,7 +1059,7 @@ body {
 .days-count {
     font-size: 16px;
     font-weight: 700;
-    color: var(--accent-blue);
+    color: var(--dropdown-days);
 }
 
 .days-count.urgent {
@@ -885,23 +1072,23 @@ body {
 
 .days-label {
     font-size: 11px;
-    color: var(--secondary-text);
+    color: var(--dropdown-days-label);
 }
 
 /* Индикатор "сегодня" */
 .birthday-list-item.today {
-    background: linear-gradient(135deg, #fff9e6, #fff3cd);
-    border: 1px solid #ffd54f;
+    background: var(--dropdown-today-bg);
+    border: 1px solid var(--dropdown-today-border);
 }
 
 .birthday-list-item.today .days-count {
-    color: #ff8c00;
+    color: var(--dropdown-today-days);
 }
 
 .today-badge {
     display: inline-block;
-    background: #ff8c00;
-    color: white;
+    background: var(--today-badge-bg);
+    color: var(--today-badge-text);
     font-size: 10px;
     font-weight: 700;
     padding: 2px 6px;
