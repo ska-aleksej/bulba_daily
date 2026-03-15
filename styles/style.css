@@ -66,6 +66,10 @@ body {
     --today-badge-bg: #ff8c00;
     --today-badge-text: white;
     --widget-count-text: #172B4D;
+    --widget-festive-count-text: #8B4513;
+    --widget-festive-bg: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+    --widget-festive-border: #ffd54f;
+    --widget-festive-bg-hover: linear-gradient(135deg, #fff3cd 0%, #ffe082 100%);
     --container-bg-gradient: linear-gradient(135deg, var(--surface-secondary) 0%, var(--light-blue) 100%);
     --weather-card-border: var(--medium-blue);
     --weather-card-border-hover: var(--bright-blue);
@@ -150,6 +154,10 @@ body.dark {
     --today-badge-bg: rgba(255, 153, 31, 0.45);
     --today-badge-text: #FFFFFF;
     --widget-count-text: #E0E0E0;
+    --widget-festive-count-text: #FFFFFF;
+    --widget-festive-bg: linear-gradient(135deg, rgba(255, 249, 230, 0.3) 0%, rgba(255, 243, 205, 0.3) 100%);
+    --widget-festive-border: rgba(255, 213, 79, 0.3);
+    --widget-festive-bg-hover: linear-gradient(135deg, rgba(255, 243, 205, 0.35) 0%, rgba(255, 224, 130, 0.35) 100%);
     --container-bg-gradient: var(--surface-secondary);
     --weather-card-border: rgba(64, 169, 255, 0.4);
     --weather-card-border-hover: rgba(64, 169, 255, 0.6);
@@ -658,12 +666,16 @@ body.dark #app {
 }
 
 .birthday-widget.festive {
-    background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
-    border: 1px solid #ffd54f;
+    background: var(--widget-festive-bg);
+    border: 1px solid var(--widget-festive-border);
 }
 
 .birthday-widget.festive:hover {
-    background: linear-gradient(135deg, #fff3cd 0%, #ffe082 100%);
+    background: var(--widget-festive-bg-hover);
+}
+
+.birthday-widget.festive .birthday-count {
+    color: var(--widget-festive-count-text);
 }
 
 .birthday-widget.compact {
